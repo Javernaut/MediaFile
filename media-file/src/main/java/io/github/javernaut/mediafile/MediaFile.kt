@@ -5,7 +5,7 @@ import android.os.ParcelFileDescriptor
 /**
  * A structure that has metadata of a video or audio file and its media streams.
  */
-class MediaFile(
+class MediaFile internal constructor(
     val fileFormatName: String,
     val videoStream: VideoStream?,
     val audioStreams: List<AudioStream>,
@@ -14,6 +14,9 @@ class MediaFile(
     frameLoaderContextHandle: Long?
 ) {
 
+    /**
+     * true if file is accessed by file: protocol and false if by pipe:
+     */
     val fullFeatured = parcelFileDescriptor == null
 
     var frameLoader = frameLoaderContextHandle?.let { FrameLoader(frameLoaderContextHandle) }

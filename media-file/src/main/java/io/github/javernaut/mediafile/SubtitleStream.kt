@@ -1,5 +1,8 @@
 package io.github.javernaut.mediafile
 
-class SubtitleStream(
+/**
+ * Represents metadata of a subtitle stream in a media file.
+ */
+class SubtitleStream internal constructor(
     val basicInfo: BasicStreamInfo
 )

@@ -1,9 +1,9 @@
 package io.github.javernaut.mediafile
 
 /**
- * Represents metadata of a video stream in a video file. Allows video frames reading.
+ * Represents metadata of a video stream in a video file.
  */
-class VideoStream(
+class VideoStream internal constructor(
     val basicInfo: BasicStreamInfo,
     val bitRate: BitRate,
     val frameWidth: Int,

@@ -1,6 +1,6 @@
 package io.github.javernaut.mediafile
 
-class AudioStream(
+class AudioStream internal constructor(
     val basicInfo: BasicStreamInfo,
     val bitRate: BitRate,
     val sampleFormat: String?,

@@ -3,7 +3,11 @@ package io.github.javernaut.mediafile
 import android.graphics.Bitmap
 
 
-class FrameLoader(private var frameLoadingContextHandle: Long) {
+/**
+ * Class for loading exactly 4 equidistant frames from a video file.
+ * Subject to change in future releases.
+ */
+class FrameLoader internal constructor(private var frameLoadingContextHandle: Long) {
 
     private var framesDecoded = 0
 
