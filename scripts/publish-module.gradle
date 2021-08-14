@@ -1,0 +1,65 @@
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+group = PUBLISH_GROUP_ID
+version = PUBLISH_VERSION
+
+afterEvaluate {
+    publishing {
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/Javernaut/MediaFile")
+                credentials {
+                    username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                    password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+                }
+            }
+        }
+        publications {
+            release(MavenPublication) {
+                groupId PUBLISH_GROUP_ID
+                artifactId PUBLISH_ARTIFACT_ID
+                version PUBLISH_VERSION
+
+                if (project.plugins.findPlugin("com.android.library")) {
+                    from components.release
+                } else {
+                    from components.java
+                }
+
+                pom {
+                    name = PUBLISH_ARTIFACT_ID
+                    description = 'A library for reading the basic media information about video and audio files'
+                    url = 'https://github.com/Javernaut/MediaFile'
+                    licenses {
+                        license {
+                            name = 'MIT License'
+                            url = 'http://www.opensource.org/licenses/mit-license.php'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'javernaut'
+                            name = 'Alexander Berezhnoi'
+                        }
+                    }
+                    scm {
+                        connection = 'scm:git:git://github.com/Javernaut/MediaFile.git'
+                        developerConnection = 'scm:git:ssh://github.com:Javernaut/MediaFile.git'
+                        url = 'https://github.com/Javernaut/MediaFile'
+                    }
+                }
+            }
+        }
+    }
+}
+
+signing {
+    useInMemoryPgpKeys(
+            rootProject.ext["signing.keyId"],
+            rootProject.ext["signing.key"],
+            rootProject.ext["signing.password"],
+    )
+    sign publishing.publications
+}
