@@ -4,9 +4,7 @@ plugins {
 }
 
 ext {
-    PUBLISH_GROUP_ID = 'io.github.javernaut'
     PUBLISH_ARTIFACT_ID = 'mediafile'
-    PUBLISH_VERSION = '0.4.0'
 }
 
 apply from: "${rootDir}/scripts/publish-module.gradle"

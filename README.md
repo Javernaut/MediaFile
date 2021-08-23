@@ -38,7 +38,7 @@ Library tries to recreate a raw file path from a Uri and pass it to FFmpeg. If i
 
 ## Using
 
-The library is published on Github Packages, so you are able to use it as a dependency:
+The library is available via Maven Central, so you are able to use it as a dependency:
 
 ```groovy
 dependencies {
@@ -47,18 +47,9 @@ dependencies {
 
 repositories {
     // ...
-    maven {
-        name = "GitHubPackages"
-        url = uri("https://maven.pkg.github.com/Javernaut/MediaFile")
-        credentials {
-            username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-            password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
-        }
-    }
+    mavenCentral()
 }
 ```
-
-**Attention:** since the Github Packages are used, in order to get access to it you have to generate a Personal Access Token on Github and setup your environment with it. See [here](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-gradle-registry) for more information. Migrating to somethings simpler is planned.
 
 ## Build on your own
 
@@ -66,7 +57,7 @@ In order to compile the library yourself, you have to get [ffmpeg-android-maker]
 
 `git submodule update --init`  
 
-Then you need to setup and execute the ffmpeg-android-maker's script. The command used to generate the artifacts for Github Packages looks like this:
+Then you need to setup and execute the ffmpeg-android-maker's script. The command used to generate the artifacts for Maven Central looks like this:
 
 `./ffmpeg-android-maker.sh -dav1d`
 
