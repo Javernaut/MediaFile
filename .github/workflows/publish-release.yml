@@ -23,10 +23,10 @@ jobs:
           sudo apt-get install nasm ninja-build
 
       - name: Assembling the ffmpeg-android-maker
-        run: ffmpeg-android-maker/ffmpeg-android-maker.sh -dav1d
-        env:
-          ANDROID_SDK_HOME: $ANDROID_HOME
-          ANDROID_NDK_HOME: $ANDROID_NDK_LATEST_HOME
+        run: |
+          export ANDROID_SDK_HOME=$ANDROID_HOME
+          export ANDROID_NDK_HOME=$ANDROID_NDK_LATEST_HOME
+          ./ffmpeg-android-maker/ffmpeg-android-maker.sh -dav1d -android=16
 
       - name: Building the library, preparing sources and docs
         run: ./gradlew assembleRelease androidSourcesJar javadocJar
