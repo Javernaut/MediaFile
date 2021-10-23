@@ -39,7 +39,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    ndkVersion "21.4.7075529"
+    ndkVersion "23.0.7599858"
     externalNativeBuild {
         cmake {
             path "CMakeLists.txt"
