@@ -101,6 +101,7 @@ class MediaFileBuilder(private val mediaType: MediaType) {
     private fun onVideoStreamFound(
         basicStreamInfo: BasicStreamInfo,
         bitRate: Long,
+        frameRate: Double,
         frameWidth: Int,
         frameHeight: Int,
         frameLoaderContext: Long
@@ -109,6 +110,7 @@ class MediaFileBuilder(private val mediaType: MediaType) {
             videoStream = VideoStream(
                 basicStreamInfo,
                 bitRate,
+                frameRate,
                 frameWidth,
                 frameHeight
             )

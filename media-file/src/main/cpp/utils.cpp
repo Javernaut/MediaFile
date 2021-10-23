@@ -70,7 +70,7 @@ int utils_fields_init(JavaVM *vm) {
     GET_ID(GetMethodID,
            fields.MediaFileBuilder.onVideoStreamFoundID,
            fields.MediaFileBuilder.clazz,
-           "onVideoStreamFound", "(Lio/github/javernaut/mediafile/BasicStreamInfo;JIIJ)V");
+           "onVideoStreamFound", "(Lio/github/javernaut/mediafile/BasicStreamInfo;JDIIJ)V");
 
     GET_ID(GetMethodID,
            fields.MediaFileBuilder.onAudioStreamFoundID,

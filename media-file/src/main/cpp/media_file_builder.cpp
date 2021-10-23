@@ -89,10 +89,21 @@ static void onVideoStreamFound(jobject jMediaFileBuilder,
         frameLoaderContextHandle = frame_loader_context_to_handle(videoStream);
     }
 
+    AVRational guessedFrameRate = av_guess_frame_rate(
+            avFormatContext,
+            avFormatContext->streams[index],
+            nullptr
+    );
+
+    double resultFrameRate =
+            guessedFrameRate.den == 0 ? 0.0 :
+            guessedFrameRate.num / (double) guessedFrameRate.den;
+
     utils_call_instance_method_void(jMediaFileBuilder,
                                     fields.MediaFileBuilder.onVideoStreamFoundID,
                                     jBasicStreamInfo,
                                     parameters->bit_rate,
+                                    resultFrameRate,
                                     parameters->width,
                                     parameters->height,
                                     frameLoaderContextHandle);
@@ -116,7 +127,7 @@ static void onAudioStreamFound(jobject jMediaFileBuilder,
         av_bprint_clear(&printBuffer);
         av_bprint_channel_layout(&printBuffer, parameters->channels, parameters->channel_layout);
         jChannelLayout = toJString(printBuffer.str);
-        av_bprint_finalize(&printBuffer, NULL);
+        av_bprint_finalize(&printBuffer, nullptr);
     }
 
     utils_call_instance_method_void(jMediaFileBuilder,

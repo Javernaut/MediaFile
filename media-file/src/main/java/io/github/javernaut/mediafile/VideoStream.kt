@@ -6,6 +6,11 @@ package io.github.javernaut.mediafile
 class VideoStream internal constructor(
     val basicInfo: BasicStreamInfo,
     val bitRate: BitRate,
+
+    /**
+     * Guessed frame rate. Can be 0 in case it couldn't be determined.
+     */
+    val frameRate: Double,
     val frameWidth: Int,
     val frameHeight: Int
 )
