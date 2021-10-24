@@ -12,6 +12,7 @@
     <string name="media_file_disposition_clean_effects">Clean effects</string>
     <string name="media_file_disposition_attached_pic">Attached pic</string>
     <string name="media_file_disposition_timed_thumbnails">Timed thumbnails</string>
+    <string name="media_file_framerate_fps">fps</string>
     <string name="media_file_bitrate_bps">bps</string>
     <string name="media_file_bitrate_kbps">kbps</string>
     <string name="media_file_bitrate_mbps">Mbps</string>
