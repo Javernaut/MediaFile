@@ -39,5 +39,5 @@ nexusPublishing {
 
 ext {
     PUBLISH_GROUP_ID = 'io.github.javernaut'
-    PUBLISH_VERSION = '1.0.2' + versionSuffix
+    PUBLISH_VERSION = '1.0.3' + versionSuffix
 }

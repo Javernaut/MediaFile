@@ -4,7 +4,7 @@ package io.github.javernaut.mediafile
  * Represents metadata of a video stream in a video file.
  */
 class VideoStream internal constructor(
-    val basicInfo: BasicStreamInfo,
+    override val basicInfo: BasicStreamInfo,
     val bitRate: BitRate,
 
     /**
@@ -13,6 +13,6 @@ class VideoStream internal constructor(
     val frameRate: FrameRate,
     val frameWidth: Int,
     val frameHeight: Int
-)
+) : MediaStream
 
 typealias FrameRate = Double
