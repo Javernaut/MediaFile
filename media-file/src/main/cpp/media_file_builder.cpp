@@ -10,6 +10,7 @@ extern "C" {
 #include <libavformat/avformat.h>
 #include <libavcodec/avcodec.h>
 #include <libavutil/bprint.h>
+#include <libavutil/channel_layout.h>
 }
 
 static jstring toJString(const char *cString) {

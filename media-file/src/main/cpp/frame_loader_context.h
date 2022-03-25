@@ -22,7 +22,7 @@ struct FrameLoaderContext {
     // Parameters of a video stream.
     AVCodecParameters *parameters;
     // Codec of a video stream.
-    AVCodec *avVideoCodec;
+    const AVCodec *avVideoCodec;
     // And index of a video stream in the avFormatContext.
     int videoStreamIndex;
 };
