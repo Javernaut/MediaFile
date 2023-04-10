@@ -10,11 +10,11 @@ ext {
 apply from: "${rootDir}/scripts/publish-module.gradle"
 
 android {
-    compileSdk 30
+    compileSdk 33
 
     defaultConfig {
-        minSdk 16
-        targetSdk 30
+        minSdk 19
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
