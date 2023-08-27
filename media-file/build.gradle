@@ -10,6 +10,7 @@ ext {
 apply from: "${rootDir}/scripts/publish-module.gradle"
 
 android {
+    namespace = 'io.github.javernaut.mediafile'
     compileSdk 33
 
     defaultConfig {

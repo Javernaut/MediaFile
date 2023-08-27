@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.4.1)
+project(MediaFile)
 
 set(ffmpeg_dir ${CMAKE_SOURCE_DIR}/../ffmpeg-android-maker/output)
 set(ffmpeg_libs ${ffmpeg_dir}/lib/${ANDROID_ABI})
