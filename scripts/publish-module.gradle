@@ -53,7 +53,7 @@ afterEvaluate {
                     developers {
                         developer {
                             id = 'javernaut'
-                            name = 'Alexander Berezhnoi'
+                            name = 'Oleksandr Berezhnyi'
                         }
                     }
                     scm {

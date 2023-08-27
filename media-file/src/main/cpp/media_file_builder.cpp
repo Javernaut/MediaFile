@@ -1,5 +1,5 @@
 //
-// Created by Alexander Berezhnoi on 24/03/19.
+// Created by Oleksandr Berezhnyi on 24/03/19.
 //
 
 #include "media_file_builder.h"

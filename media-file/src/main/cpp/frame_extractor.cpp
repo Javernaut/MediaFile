@@ -1,5 +1,5 @@
 //
-// Created by Alexander Berezhnoi on 12/07/19.
+// Created by Oleksandr Berezhnyi on 12/07/19.
 //
 
 #include "frame_extractor.h"
