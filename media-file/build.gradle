@@ -10,11 +10,12 @@ ext {
 apply from: "${rootDir}/scripts/publish-module.gradle"
 
 android {
-    compileSdk 30
+    namespace = 'io.github.javernaut.mediafile'
+    compileSdk 34
 
     defaultConfig {
-        minSdk 16
-        targetSdk 30
+        minSdk 21
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -39,7 +40,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    ndkVersion "23.0.7599858"
+    ndkVersion "26.1.10909125"
     externalNativeBuild {
         cmake {
             path "CMakeLists.txt"
@@ -48,18 +49,18 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.annotation:annotation:1.2.0'
+    implementation 'androidx.annotation:annotation:1.7.0'
 
-    def testLibsVersion = "1.4.0"
+    def testLibsVersion = "1.5.0"
 
     // Core library
     androidTestImplementation "androidx.test:core:$testLibsVersion"
 
     // AndroidJUnitRunner and JUnit Rules
-    androidTestImplementation "androidx.test:runner:$testLibsVersion"
+    androidTestImplementation "androidx.test:runner:1.5.2"
     androidTestImplementation "androidx.test:rules:$testLibsVersion"
 
     // Assertions
-    androidTestImplementation "androidx.test.ext:junit:1.1.3"
+    androidTestImplementation "androidx.test.ext:junit:1.1.5"
     androidTestImplementation "androidx.test.ext:truth:$testLibsVersion"
 }

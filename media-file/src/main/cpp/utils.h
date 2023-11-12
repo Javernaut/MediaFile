@@ -1,5 +1,5 @@
 //
-// Created by Alexander Berezhnoi on 25/03/19.
+// Created by Oleksandr Berezhnyi on 25/03/19.
 //
 
 #ifndef WHATTHECODEC_UTILS_H

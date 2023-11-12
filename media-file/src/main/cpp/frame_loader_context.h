@@ -1,5 +1,5 @@
 //
-// Created by Alexander Berezhnoi on 14/10/19.
+// Created by Oleksandr Berezhnyi on 14/10/19.
 //
 
 #ifndef WHATTHECODEC_FRAME_LOADER_CONTEXT_H

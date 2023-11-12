@@ -29,7 +29,7 @@ class MediaFileBuilder(private val mediaType: MediaType) {
     /**
      * Tries reading all metadata for a [MediaFile] object from a file path.
      */
-    fun from(filePath: String) = apply {
+    fun from(filePath: String): MediaFileBuilder = apply {
         nativeCreateFromPath(filePath, mediaType.mediaStreamsMask)
     }
 
@@ -37,7 +37,7 @@ class MediaFileBuilder(private val mediaType: MediaType) {
      * Tries reading all metadata for a [MediaFile] object from a file descriptor. The file descriptor is saved and
      * closed when [MediaFile.release] method is called.
      */
-    fun from(descriptor: ParcelFileDescriptor) = apply {
+    fun from(descriptor: ParcelFileDescriptor): MediaFileBuilder = apply {
         this.parcelFileDescriptor = descriptor
         nativeCreateFromFD(descriptor.fd, mediaType.mediaStreamsMask)
     }
@@ -51,16 +51,17 @@ class MediaFileBuilder(private val mediaType: MediaType) {
      * If a file comes from assets catalog, then its format should be known to a developer.
      * All default formats are listed here: https://ffmpeg.org/ffmpeg-formats.html
      */
-    fun from(assetFileDescriptor: AssetFileDescriptor, shortFormatName: String) = apply {
-        val descriptor = assetFileDescriptor.parcelFileDescriptor
-        this.parcelFileDescriptor = descriptor
-        nativeCreateFromAssetFD(
-            descriptor.fd,
-            assetFileDescriptor.startOffset,
-            shortFormatName,
-            mediaType.mediaStreamsMask
-        )
-    }
+    fun from(assetFileDescriptor: AssetFileDescriptor, shortFormatName: String): MediaFileBuilder =
+        apply {
+            val descriptor = assetFileDescriptor.parcelFileDescriptor
+            this.parcelFileDescriptor = descriptor
+            nativeCreateFromAssetFD(
+                descriptor.fd,
+                assetFileDescriptor.startOffset,
+                shortFormatName,
+                mediaType.mediaStreamsMask
+            )
+        }
 
     /**
      * Combines all data read from FFmpeg into a [MediaFile] object. If there was error during

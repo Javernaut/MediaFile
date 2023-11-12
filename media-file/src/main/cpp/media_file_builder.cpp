@@ -1,5 +1,5 @@
 //
-// Created by Alexander Berezhnoi on 24/03/19.
+// Created by Oleksandr Berezhnyi on 24/03/19.
 //
 
 #include "media_file_builder.h"
@@ -122,14 +122,13 @@ static void onAudioStreamFound(jobject jMediaFileBuilder,
     auto jSampleFormat = toJString(av_get_sample_fmt_name(avSampleFormat));
 
     jstring jChannelLayout = nullptr;
-    if (parameters->channel_layout) {
-        AVBPrint printBuffer;
-        av_bprint_init(&printBuffer, 1, AV_BPRINT_SIZE_UNLIMITED);
-        av_bprint_clear(&printBuffer);
-        av_bprint_channel_layout(&printBuffer, parameters->channels, parameters->channel_layout);
+    AVBPrint printBuffer;
+    av_bprint_init(&printBuffer, 1, AV_BPRINT_SIZE_UNLIMITED);
+    av_bprint_clear(&printBuffer);
+    if (!av_channel_layout_describe_bprint(&parameters->ch_layout, &printBuffer)) {
         jChannelLayout = toJString(printBuffer.str);
-        av_bprint_finalize(&printBuffer, nullptr);
     }
+    av_bprint_finalize(&printBuffer, nullptr);
 
     utils_call_instance_method_void(jMediaFileBuilder,
                                     fields.MediaFileBuilder.onAudioStreamFoundID,
@@ -137,7 +136,7 @@ static void onAudioStreamFound(jobject jMediaFileBuilder,
                                     parameters->bit_rate,
                                     jSampleFormat,
                                     parameters->sample_rate,
-                                    parameters->channels,
+                                    parameters->ch_layout.nb_channels,
                                     jChannelLayout);
 }
 
