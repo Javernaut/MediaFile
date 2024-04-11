@@ -60,8 +60,7 @@ dependencies {
     androidTestImplementation(libs.androidx.test.ext.truth)
 }
 
-private val PUBLISH_ARTIFACT_ID = "mediafile"
-
+// TODO Extract this part to a separate place
 android {
     publishing {
         singleVariant("release") {
@@ -71,15 +70,17 @@ android {
     }
 }
 
+private val publishArtifactId = "mediafile"
+
 publishing {
     publications {
         create<MavenPublication>("release") {
-            groupId = rootProject.ext["PUBLISH_GROUP_ID"] as String
-            artifactId = PUBLISH_ARTIFACT_ID
-            version = rootProject.ext["PUBLISH_VERSION"] as String
+            groupId = rootProject.group as String
+            artifactId = publishArtifactId
+            version = rootProject.version as String
 
             pom {
-                name = PUBLISH_ARTIFACT_ID
+                name = publishArtifactId
                 description =
                     "A library for reading the basic media information about video and audio files"
                 url = "https://github.com/Javernaut/MediaFile"
@@ -111,9 +112,9 @@ publishing {
 
 signing {
     useInMemoryPgpKeys(
-        rootProject.extra["signing.keyId"] as String,
-        rootProject.extra["signing.key"] as String,
-        rootProject.extra["signing.password"] as String,
+        rootProject.ext["signing.keyId"] as String,
+        rootProject.ext["signing.key"] as String,
+        rootProject.ext["signing.password"] as String,
     )
     sign(publishing.publications)
 }
