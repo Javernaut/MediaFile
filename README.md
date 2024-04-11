@@ -1,7 +1,7 @@
 # MediaFile
 
 [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
-[![MIT license](http://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Javernaut/WhatTheCodec/blob/master/LICENSE.txt)
+[![MIT license](http://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Javernaut/MediaFile/blob/main/LICENSE.txt)
 [![Android Weekly #378](https://androidweekly.net/issues/issue-378/badge)](https://androidweekly.net/issues/issue-378)
 [![Android Weekly #396](https://androidweekly.net/issues/issue-396/badge)](https://androidweekly.net/issues/issue-396)
 
@@ -65,4 +65,4 @@ More details about how to setup your environment for FFmpeg compilation can be f
 
 ## License
 
-MediaFile library's source code is available under the MIT license. See the [LICENSE.txt](https://github.com/Javernaut/MediaFile/blob/master/LICENSE.txt) file for more details.
+MediaFile library's source code is available under the MIT license. See the [LICENSE.txt](https://github.com/Javernaut/MediaFile/blob/main/LICENSE.txt) file for more details.
