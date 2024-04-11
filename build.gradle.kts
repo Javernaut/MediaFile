@@ -18,6 +18,8 @@ nexusPublishing {
             stagingProfileId = rootProject.ext["sonatypeStagingProfileId"] as String
             username = rootProject.ext["ossrhUsername"] as String
             password = rootProject.ext["ossrhPassword"] as String
+            nexusUrl.set(uri("https://s01.oss.sonatype.org/service/local/"))
+            snapshotRepositoryUrl.set(uri("https://s01.oss.sonatype.org/content/repositories/snapshots/"))
         }
     }
 }
