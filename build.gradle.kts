@@ -9,7 +9,7 @@ plugins {
 
 // TODO Extract this part to a separate place
 group = "io.github.javernaut"
-version = "1.2.0" + ext["versionSuffix"]
+version = "1.2.0" + rootProject.ext["versionSuffix"]
 
 // Set up Sonatype repository
 nexusPublishing {
