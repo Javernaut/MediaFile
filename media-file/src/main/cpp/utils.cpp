@@ -3,7 +3,7 @@
 //
 
 #include "utils.h"
-#include "log.h"
+#include "log/log.h"
 
 struct fields fields;
 static JavaVM *javaVM;
@@ -60,7 +60,8 @@ int utils_fields_init(JavaVM *vm) {
     GET_ID(GetMethodID,
            fields.MediaFileBuilder.createBasicInfoID,
            fields.MediaFileBuilder.clazz,
-           "createBasicInfo", "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)Lio/github/javernaut/mediafile/BasicStreamInfo;");
+           "createBasicInfo",
+           "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)Lio/github/javernaut/mediafile/BasicStreamInfo;");
 
     GET_ID(GetMethodID,
            fields.MediaFileBuilder.onMediaFileFoundID,
@@ -75,7 +76,8 @@ int utils_fields_init(JavaVM *vm) {
     GET_ID(GetMethodID,
            fields.MediaFileBuilder.onAudioStreamFoundID,
            fields.MediaFileBuilder.clazz,
-           "onAudioStreamFound", "(Lio/github/javernaut/mediafile/BasicStreamInfo;JLjava/lang/String;IILjava/lang/String;)V");
+           "onAudioStreamFound",
+           "(Lio/github/javernaut/mediafile/BasicStreamInfo;JLjava/lang/String;IILjava/lang/String;)V");
 
     GET_ID(GetMethodID,
            fields.MediaFileBuilder.onSubtitleStreamFoundID,
