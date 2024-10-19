@@ -5,6 +5,7 @@
 #include "media_file_builder.h"
 #include "frame_loader_context.h"
 #include "utils.h"
+#include "Reinterpret.h"
 
 extern "C" {
 #include <libavformat/avformat.h>
@@ -87,7 +88,7 @@ static void onVideoStreamFound(jobject jMediaFileBuilder,
         videoStream->parameters = parameters;
         videoStream->avVideoCodec = decoder;
         videoStream->videoStreamIndex = index;
-        frameLoaderContextHandle = frame_loader_context_to_handle(videoStream);
+        frameLoaderContextHandle = Reinterpret::toHandle(videoStream);
     }
 
     AVRational guessedFrameRate = av_guess_frame_rate(

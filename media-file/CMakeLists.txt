@@ -37,6 +37,10 @@ add_library(
         src/main/cpp/frame_loader_context_jni.cpp
         src/main/cpp/frame_extractor.cpp
         src/main/cpp/log/ffmpeg.cpp
+        src/main/cpp/MediaFileContext.cpp
+        src/main/cpp/MediaFileUtility.cpp
+        src/main/cpp/MediaFileContext_jni.cpp
+        src/main/cpp/MediaFileFactory_jni.cpp
         src/main/cpp/utils.cpp)
 
 target_link_libraries(

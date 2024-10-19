@@ -13,6 +13,7 @@ extern "C" {
 
 #include <android/bitmap.h>
 #include "frame_loader_context.h"
+#include "Reinterpret.h"
 
 static int TOTAL_FRAMES_NUMBER = 4;
 
@@ -20,7 +21,7 @@ bool frame_extractor_load_frame(JNIEnv *env, int64_t jFrameLoaderContextHandle, 
     AndroidBitmapInfo bitmapMetricInfo;
     AndroidBitmap_getInfo(env, jBitmap, &bitmapMetricInfo);
 
-    auto *videoStream = frame_loader_context_from_handle(jFrameLoaderContextHandle);
+    auto *videoStream = Reinterpret::fromHandle<FrameLoaderContext>(jFrameLoaderContextHandle);
 
     auto pixelFormat = static_cast<AVPixelFormat>(videoStream->parameters->format);
     if (pixelFormat == AV_PIX_FMT_NONE) {
