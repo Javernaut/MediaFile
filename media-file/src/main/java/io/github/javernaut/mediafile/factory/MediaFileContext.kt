@@ -5,7 +5,7 @@ import io.github.javernaut.mediafile.creator.MediaType
 
 // Owns AVFormatContext pointer
 class MediaFileContext(
-    private val nativeHandle: Long,
+    internal val nativeHandle: NativeHandle, // MediaFileContext
     private val mediaType: MediaType
 ) {
     // Async?
@@ -14,14 +14,13 @@ class MediaFileContext(
         readMetaData(nativeHandle, builder, mediaType.mediaStreamsMask)
         return builder.create()
     }
-//    fun getFrameReader(): FrameReader = TODO()
 
     fun dispose() = dispose(nativeHandle)
 
-    private external fun dispose(nativeHandle: Long)
+    private external fun dispose(nativeHandle: NativeHandle) // MediaFileContext
 
     private external fun readMetaData(
-        nativeHandle: Long,
+        nativeHandle: NativeHandle, // MediaFileContext
         builder: MediaFileBuilder,
         mediaStreamsMask: Int
     )

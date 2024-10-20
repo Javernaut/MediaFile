@@ -10,6 +10,7 @@ class MediaFile internal constructor(
     val videoStream: VideoStream?,
     val audioStreams: List<AudioStream>,
     val subtitleStreams: List<SubtitleStream>,
+    @Deprecated("Migrate to FrameLoader from MediaFileContext")
     private val parcelFileDescriptor: ParcelFileDescriptor?,
     frameLoaderContextHandle: Long?
 ) {
@@ -19,14 +20,15 @@ class MediaFile internal constructor(
      */
     val fullFeatured = parcelFileDescriptor == null
 
-    var frameLoader = frameLoaderContextHandle?.let { FrameLoader(frameLoaderContextHandle) }
+    var legacyFrameLoader =
+        frameLoaderContextHandle?.let { LegacyFrameLoader(frameLoaderContextHandle) }
         private set
 
-    fun supportsFrameLoading() = videoStream != null && frameLoader != null
+    fun supportsFrameLoading() = videoStream != null && legacyFrameLoader != null
 
     fun release() {
-        frameLoader?.release()
-        frameLoader = null
+        legacyFrameLoader?.release()
+        legacyFrameLoader = null
         parcelFileDescriptor?.close()
     }
 }

@@ -6,6 +6,7 @@ import android.util.Log
 import io.github.javernaut.mediafile.MediaFile
 import java.io.FileNotFoundException
 
+@Deprecated("Use MediaFileFactory instead")
 class MediaFileCreator(context: Context) {
     private val appContext = context.applicationContext
 

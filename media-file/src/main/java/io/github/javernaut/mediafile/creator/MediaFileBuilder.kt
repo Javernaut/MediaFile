@@ -13,6 +13,7 @@ import io.github.javernaut.mediafile.VideoStream
  * Class that aggregates a creation process of a [MediaFile] object. Certain private methods are
  * called from JNI layer.
  */
+@Deprecated("Use .factory.MediaFileBuilder instead")
 class MediaFileBuilder(private val mediaType: MediaType) {
 
     private var error = false

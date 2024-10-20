@@ -40,6 +40,8 @@ add_library(
         src/main/cpp/MediaFileContext.cpp
         src/main/cpp/MediaFileUtility.cpp
         src/main/cpp/MediaFileBuilder.cpp
+        src/main/cpp/MediaFileFrameLoader.cpp
+        src/main/cpp/MediaFileFrameLoader_jni.cpp
         src/main/cpp/MediaFileContext_jni.cpp
         src/main/cpp/MediaFileFactory_jni.cpp
         src/main/cpp/utils.cpp)

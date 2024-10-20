@@ -21,21 +21,13 @@ object MediaFileFactory {
 
     fun create(request: Request, type: MediaType): MediaFileContext? {
         return openContext(request.url)
-            .takeIf { it != Reinterpret.NO_REF }
+            .takeIf { it.isValid }
             ?.let {
                 MediaFileContext(it, type)
             }
     }
 
-    private external fun openContext(url: String): Long
-}
-
-object Reinterpret {
-    const val NO_REF = 0L
-}
-
-class FrameReader {
-    fun dispose(): Unit = TODO()
+    private external fun openContext(url: String): NativeHandle // MediaFileContext
 }
 
 sealed class Request {

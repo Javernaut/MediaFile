@@ -7,18 +7,19 @@
 
 extern "C" {
 JNIEXPORT void JNICALL
-Java_io_github_javernaut_mediafile_FrameLoader_nativeRelease(JNIEnv *, jclass,
-                                                           jlong jFrameLoaderContextHandle) {
+Java_io_github_javernaut_mediafile_LegacyFrameLoader_nativeRelease(JNIEnv *, jclass,
+                                                                   jlong jFrameLoaderContextHandle) {
     frame_loader_context_free(jFrameLoaderContextHandle);
 }
 
 
 JNIEXPORT jboolean JNICALL
-Java_io_github_javernaut_mediafile_FrameLoader_nativeLoadFrame(JNIEnv *env, jclass,
-                                                                   jlong jFrameLoaderContextHandle,
-                                                                   jint index,
-                                                                   jobject jBitmap) {
-    bool successfullyLoaded = frame_extractor_load_frame(env, jFrameLoaderContextHandle, index, jBitmap);
+Java_io_github_javernaut_mediafile_LegacyFrameLoader_nativeLoadFrame(JNIEnv *env, jclass,
+                                                                     jlong jFrameLoaderContextHandle,
+                                                                     jint index,
+                                                                     jobject jBitmap) {
+    bool successfullyLoaded = frame_extractor_load_frame(env, jFrameLoaderContextHandle, index,
+                                                         jBitmap);
     return static_cast<jboolean>(successfullyLoaded);
 }
 }
