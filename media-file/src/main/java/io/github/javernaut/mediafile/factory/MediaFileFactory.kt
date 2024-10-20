@@ -22,7 +22,9 @@ object MediaFileFactory {
     fun create(request: Request, type: MediaType): MediaFileContext? {
         return openContext(request.url)
             .takeIf { it != Reinterpret.NO_REF }
-            ?.let(::MediaFileContext)
+            ?.let {
+                MediaFileContext(it, type)
+            }
     }
 
     private external fun openContext(url: String): Long
@@ -31,20 +33,6 @@ object MediaFileFactory {
 object Reinterpret {
     const val NO_REF = 0L
 }
-
-// Owns AVFormatContext pointer
-class MediaFileContext(
-    private val nativeHandle: Long
-) {
-    fun readMetaData(): MetaData = TODO()
-//    fun getFrameReader(): FrameReader = TODO()
-
-    fun dispose() = dispose(nativeHandle)
-
-    private external fun dispose(nativeHandle: Long)
-}
-
-class MetaData
 
 class FrameReader {
     fun dispose(): Unit = TODO()

@@ -8,7 +8,7 @@
 namespace MediaFileUtility {
     void setAndroidContext(void *);
 
-    void setJavaVM(void *);
+    void setJavaVM(JavaVM *vm);
 
     void reset();
 }

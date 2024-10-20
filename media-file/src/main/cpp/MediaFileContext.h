@@ -16,6 +16,8 @@ public:
     // Takes ownership for the AVFormatContext
     explicit MediaFileContext(AVFormatContext *avFormatContext);
 
+    AVFormatContext *getAvFormatContext() const;
+
     ~MediaFileContext();
 
     static MediaFileContext *open(const char *url);

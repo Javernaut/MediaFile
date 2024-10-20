@@ -8,7 +8,7 @@ MediaFileContext::MediaFileContext(AVFormatContext *avFormatContext) :
         avFormatContext(avFormatContext) {}
 
 MediaFileContext::~MediaFileContext() {
-    avformat_free_context(avFormatContext);
+    avformat_close_input(&avFormatContext);
 }
 
 MediaFileContext *MediaFileContext::open(const char *url) {
@@ -17,4 +17,8 @@ MediaFileContext *MediaFileContext::open(const char *url) {
         return nullptr;
     }
     return new MediaFileContext(context);
+}
+
+AVFormatContext *MediaFileContext::getAvFormatContext() const {
+    return avFormatContext;
 }
