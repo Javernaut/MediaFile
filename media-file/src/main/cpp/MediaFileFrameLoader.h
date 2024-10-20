@@ -13,18 +13,18 @@ extern "C" {
 };
 
 class MediaFileFrameLoader {
-private:
-
+public:
     // Root FFmpeg object for the given media.
     AVFormatContext *avFormatContext;
     // Parameters of a video stream.
-    AVCodecParameters *parameters;
+    const AVCodecParameters *parameters;
     // Codec of a video stream.
     const AVCodec *avVideoCodec;
     // And index of a video stream in the avFormatContext.
-    int videoStreamIndex;
+    const int videoStreamIndex;
     const int totalFramesToRead;
-public:
+    int frameToRead = 0;
+
     explicit MediaFileFrameLoader(
             AVFormatContext *avFormatContext,
             AVCodecParameters *parameters,
