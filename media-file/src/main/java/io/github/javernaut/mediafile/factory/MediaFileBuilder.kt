@@ -32,10 +32,7 @@ internal class MediaFileBuilder {
                 fileFormatName!!,
                 videoStream,
                 audioStreams,
-                subtitleStream,
-                // Deprecating these fields in the original model, making it purely 'a model'
-                null,
-                0
+                subtitleStream
             )
         } else {
             null

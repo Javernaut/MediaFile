@@ -74,9 +74,7 @@ class MediaFileBuilder(private val mediaType: MediaType) {
                 fileFormatName!!,
                 videoStream,
                 audioStreams,
-                subtitleStream,
-                parcelFileDescriptor,
-                frameLoaderContextHandle
+                subtitleStream
             )
         } else {
             null
