@@ -1,10 +1,10 @@
 [versions]
-androidGradlePlugin = "8.7.1"
+androidGradlePlugin = "8.7.2"
 publishPlugin = "2.0.0"
 
 kotlin = "2.0.21"
 
-androidx-annotation = "1.9.0"
+androidx-annotation = "1.9.1"
 androidx-test-core = "1.6.1"
 androidx-test-rules = "1.6.1"
 androidx-test-runner = "1.6.2"
