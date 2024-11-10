@@ -15,6 +15,7 @@ object MediaFileFactory {
         System.loadLibrary("media-file")
     }
 
+    // TODO Describe the importance of calling this in order to use content:// URIs
     fun initWith(context: Context) = nativeInitWith(context.applicationContext)
 
     private external fun nativeInitWith(context: Context)

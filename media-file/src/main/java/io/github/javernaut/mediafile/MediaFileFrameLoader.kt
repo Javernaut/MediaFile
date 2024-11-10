@@ -1,6 +1,7 @@
 package io.github.javernaut.mediafile
 
 import android.graphics.Bitmap
+import io.github.javernaut.mediafile.MediaFileFrameLoader.Companion.create
 import io.github.javernaut.mediafile.factory.MediaFileContext
 import io.github.javernaut.mediafile.factory.NativeHandle
 import io.github.javernaut.mediafile.factory.isValid
@@ -46,10 +47,19 @@ class MediaFileFrameLoader internal constructor(
             totalFramesToRead: Int
         ): NativeHandle // MediaFileFrameLoader
 
-        fun create(context: MediaFileContext, totalFramesToRead: Int): MediaFileFrameLoader? {
-            return nativeCreateFrameLoader(context.nativeHandle, totalFramesToRead)
-                .takeIf { it.isValid }
-                ?.let { MediaFileFrameLoader(it) }
+        internal fun create(
+            context: MediaFileContext,
+            totalFramesToRead: Int
+        ): MediaFileFrameLoader? {
+            return context.produceSubResource { contextHandle ->
+                nativeCreateFrameLoader(contextHandle, totalFramesToRead)
+                    .takeIf { it.isValid }
+                    ?.let { MediaFileFrameLoader(it) }
+            }
         }
     }
+}
+
+fun MediaFileContext.getFrameLoader(totalFramesToRead: Int): MediaFileFrameLoader? {
+    return create(this, totalFramesToRead)
 }

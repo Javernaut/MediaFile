@@ -69,7 +69,6 @@ class MediaFileTest {
         assertThat(subtitleStream.basicInfo.disposition).isEqualTo(0)
 
         // Clean up
-        mediaFile.release()
         assetFileDescriptor.close()
     }
 
@@ -108,8 +107,7 @@ class MediaFileTest {
         assertThat(mediaFile.subtitleStreams).isEmpty()
 
         // Clean up
-        mediaFile.release()
+//        mediaFile.release()
         assetFileDescriptor.close()
     }
-
 }
