@@ -34,7 +34,6 @@ add_library(
         src/main/cpp/media_file_builder.cpp
         src/main/cpp/media_file_builder_jni.cpp
         src/main/cpp/frame_loader_context.cpp
-        src/main/cpp/frame_extractor.cpp
         src/main/cpp/log/ffmpeg.cpp
         src/main/cpp/MediaFileContext.cpp
         src/main/cpp/MediaFileUtility.cpp
@@ -43,6 +42,7 @@ add_library(
         src/main/cpp/MediaFileFrameLoader_jni.cpp
         src/main/cpp/MediaFileContext_jni.cpp
         src/main/cpp/MediaFileFactory_jni.cpp
+        src/main/cpp/Request_jni.cpp
         src/main/cpp/utils.cpp)
 
 target_link_libraries(

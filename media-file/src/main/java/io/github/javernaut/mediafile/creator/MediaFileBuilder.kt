@@ -14,7 +14,7 @@ import io.github.javernaut.mediafile.VideoStream
  * called from JNI layer.
  */
 @Deprecated("Use .factory.MediaFileBuilder instead")
-class MediaFileBuilder(private val mediaType: MediaType) {
+internal class MediaFileBuilder(private val mediaType: MediaType) {
 
     private var error = false
 
