@@ -1,7 +1,6 @@
 #include <jni.h>
 
 #include "media_file_builder.h"
-#include "frame_extractor.h"
 
 // File with JNI bindings for MediaFileBuilder java class.
 
