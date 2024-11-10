@@ -12,13 +12,22 @@ import io.github.javernaut.mediafile.factory.isValid
  */
 class MediaFileFrameLoader internal constructor(
     private val nativeHandle: NativeHandle // MediaFileFrameLoader
-) {
-    // TODO Async?
+) : AutoCloseable {
+
+    private var closed = false
+
+    @Synchronized
     fun loadNextFrameInto(bitmap: Bitmap): Boolean {
-        return nativeLoadFrame(nativeHandle, bitmap)
+        return !closed && nativeLoadFrame(nativeHandle, bitmap)
     }
 
-    fun dispose() = dispose(nativeHandle)
+    @Synchronized
+    override fun close() {
+        if (!closed) {
+            dispose(nativeHandle)
+            closed = true
+        }
+    }
 
     companion object {
 
