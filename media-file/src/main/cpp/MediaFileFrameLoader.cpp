@@ -22,7 +22,7 @@ int get_video_stream_index(AVFormatContext *formatContext) {
 }
 
 MediaFileFrameLoader *MediaFileFrameLoader::create(
-        MediaFileContext *mediaFileContext,
+        MediaFile::Context *mediaFileContext,
         int totalFramesToRead
 ) {
     AVFormatContext *avFormatContext = mediaFileContext->getAvFormatContext();

@@ -2,7 +2,7 @@
 // Created by Oleksandr Berezhnyi on 10.11.2024.
 //
 #include <jni.h>
-#include "MediaFileContext.hpp"
+#include "MediaFile/Context.hpp"
 #include "Reinterpret.hpp"
 
 extern "C"
@@ -11,7 +11,7 @@ Java_io_github_javernaut_mediafile_factory_MediaSource_openUrl(JNIEnv *env, jcla
                                                                jstring url) {
     const char *cUrl = env->GetStringUTFChars(url, nullptr);
 
-    auto context = MediaFileContext::open(cUrl);
+    auto context = MediaFile::Context::open(cUrl);
 
     env->ReleaseStringUTFChars(url, cUrl);
 
@@ -32,7 +32,7 @@ Java_io_github_javernaut_mediafile_factory_MediaSource_openFileDescriptor(
             ? nullptr
             : env->GetStringUTFChars(format_name_hint, nullptr);
 
-    auto result = MediaFileContext::open(file_descriptor, skip_initial_bytes, cFormatName);
+    auto result = MediaFile::Context::open(file_descriptor, skip_initial_bytes, cFormatName);
 
     if (cFormatName != nullptr) {
         env->ReleaseStringUTFChars(format_name_hint, cFormatName);

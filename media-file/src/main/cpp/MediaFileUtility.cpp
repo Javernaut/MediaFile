@@ -3,8 +3,8 @@
 //
 
 #include <jni.h>
+#include <MediaFile/Builder.hpp>
 #include "MediaFileUtility.hpp"
-#include "MediaFileBuilder.hpp"
 
 extern "C" {
 #include <libavcodec/jni.h>
@@ -16,11 +16,11 @@ void MediaFileUtility::setAndroidContext(void *androidContext) {
 
 void MediaFileUtility::setJavaVM(JavaVM *vm) {
     av_jni_set_java_vm(vm, nullptr);
-    MediaFileBuilder::init(vm);
+    MediaFile::Builder::init(vm);
 }
 
 void MediaFileUtility::reset() {
     setAndroidContext(nullptr);
     setJavaVM(nullptr);
-    MediaFileBuilder::reset();
+    MediaFile::Builder::reset();
 }

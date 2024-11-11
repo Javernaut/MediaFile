@@ -2,8 +2,8 @@
 // Created by Oleksandr Berezhnyi on 20.10.2024.
 //
 
-#include "MediaFileBuilder.hpp"
-#include "log/log.h"
+#include <MediaFile/Builder.hpp>
+#include <log/log.h>
 
 extern "C" {
 #include <libavformat/avformat.h>
@@ -262,49 +262,51 @@ static int STREAM_VIDEO = 1;
 static int STREAM_AUDIO = 1 << 1;
 static int STREAM_SUBTITLE = 1 << 2;
 
-void MediaFileBuilder::init(JavaVM *vm) {
-    utils_fields_init(vm);
-}
+namespace MediaFile {
+    void Builder::init(JavaVM *vm) {
+        utils_fields_init(vm);
+    }
 
-void MediaFileBuilder::reset() {
-    utils_fields_free();
-}
+    void Builder::reset() {
+        utils_fields_free();
+    }
 
-void MediaFileBuilder::readMetaInfo(
-        MediaFileContext *mediaFileContext,
-        jobject jMediaFileBuilder,
-        jint mediaStreamsMask
-) {
-    auto avFormatContext = mediaFileContext->getAvFormatContext();
+    void Builder::readMetaInfo(
+            MediaFile::Context *mediaFileContext,
+            jobject jMediaFileBuilder,
+            jint mediaStreamsMask
+    ) {
+        auto avFormatContext = mediaFileContext->getAvFormatContext();
 
-    if (avformat_find_stream_info(avFormatContext, nullptr) < 0) {
-        onError(jMediaFileBuilder);
-        return;
-    };
+        if (avformat_find_stream_info(avFormatContext, nullptr) < 0) {
+            onError(jMediaFileBuilder);
+            return;
+        };
 
-    onMediaFileFound(jMediaFileBuilder, avFormatContext);
+        onMediaFileFound(jMediaFileBuilder, avFormatContext);
 
-    for (int pos = 0; pos < avFormatContext->nb_streams; pos++) {
-        AVCodecParameters *parameters = avFormatContext->streams[pos]->codecpar;
-        AVMediaType type = parameters->codec_type;
-        switch (type) {
-            case AVMEDIA_TYPE_VIDEO:
-                if (mediaStreamsMask & STREAM_VIDEO) {
-                    onVideoStreamFound(jMediaFileBuilder, avFormatContext, pos);
-                }
-                break;
-            case AVMEDIA_TYPE_AUDIO:
-                if (mediaStreamsMask & STREAM_AUDIO) {
-                    onAudioStreamFound(jMediaFileBuilder, avFormatContext, pos);
-                }
-                break;
-            case AVMEDIA_TYPE_SUBTITLE:
-                if (mediaStreamsMask & STREAM_SUBTITLE) {
-                    onSubtitleStreamFound(jMediaFileBuilder, avFormatContext, pos);
-                }
-                break;
-            default:
-                break;
+        for (int pos = 0; pos < avFormatContext->nb_streams; pos++) {
+            AVCodecParameters *parameters = avFormatContext->streams[pos]->codecpar;
+            AVMediaType type = parameters->codec_type;
+            switch (type) {
+                case AVMEDIA_TYPE_VIDEO:
+                    if (mediaStreamsMask & STREAM_VIDEO) {
+                        onVideoStreamFound(jMediaFileBuilder, avFormatContext, pos);
+                    }
+                    break;
+                case AVMEDIA_TYPE_AUDIO:
+                    if (mediaStreamsMask & STREAM_AUDIO) {
+                        onAudioStreamFound(jMediaFileBuilder, avFormatContext, pos);
+                    }
+                    break;
+                case AVMEDIA_TYPE_SUBTITLE:
+                    if (mediaStreamsMask & STREAM_SUBTITLE) {
+                        onSubtitleStreamFound(jMediaFileBuilder, avFormatContext, pos);
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

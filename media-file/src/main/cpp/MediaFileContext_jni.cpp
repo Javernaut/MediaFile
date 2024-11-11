@@ -2,8 +2,8 @@
 // Created by Oleksandr Berezhnyi on 18.10.2024.
 //
 #include <jni.h>
-#include "MediaFileContext.hpp"
-#include "MediaFileBuilder.hpp"
+#include <MediaFile/Context.hpp>
+#include <MediaFile/Builder.hpp>
 #include "Reinterpret.hpp"
 
 extern "C"
@@ -13,7 +13,7 @@ Java_io_github_javernaut_mediafile_factory_MediaFileContext_dispose(
         jobject thiz,
         jlong contextHandle
 ) {
-    delete Reinterpret::fromHandle<MediaFileContext>(contextHandle);
+    delete Reinterpret::fromHandle<MediaFile::Context>(contextHandle);
 }
 
 extern "C"
@@ -25,8 +25,8 @@ Java_io_github_javernaut_mediafile_factory_MediaFileContext_readMetaData(
         jobject jBuilder,
         jint mediaStreamsMask
 ) {
-    MediaFileBuilder::readMetaInfo(
-            Reinterpret::fromHandle<MediaFileContext>(contextHandle),
+    MediaFile::Builder::readMetaInfo(
+            Reinterpret::fromHandle<MediaFile::Context>(contextHandle),
             jBuilder,
             mediaStreamsMask
     );

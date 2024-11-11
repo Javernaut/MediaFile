@@ -5,7 +5,7 @@
 #pragma once
 
 #include <jni.h>
-#include "MediaFileContext.hpp"
+#include "MediaFile/Context.hpp"
 
 extern "C" {
 #include <libavformat/avformat.h>
@@ -34,5 +34,6 @@ public:
 
     bool loadFrame(JNIEnv *env, jobject bitmap);
 
-    static MediaFileFrameLoader *create(MediaFileContext *mediaFileContext, int totalFramesToRead);
+    static MediaFileFrameLoader *
+    create(MediaFile::Context *mediaFileContext, int totalFramesToRead);
 };

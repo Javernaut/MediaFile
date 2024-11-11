@@ -27,7 +27,7 @@ Java_io_github_javernaut_mediafile_MediaFileFrameLoader_nativeCreateFrameLoader(
         jlong contextHandle,
         jint totalFramesToRead
 ) {
-    auto mediaFileContext = Reinterpret::fromHandle<MediaFileContext>(contextHandle);
+    auto mediaFileContext = Reinterpret::fromHandle<MediaFile::Context>(contextHandle);
     auto mediaFileFrameLoader = MediaFileFrameLoader::create(mediaFileContext, totalFramesToRead);
     return Reinterpret::toHandle(mediaFileFrameLoader);
 }

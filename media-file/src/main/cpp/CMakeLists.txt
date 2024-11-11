@@ -1,10 +1,15 @@
 cmake_minimum_required(VERSION 3.4.1)
 project(MediaFile)
 
-set(ffmpeg_dir ${CMAKE_SOURCE_DIR}/../ffmpeg-android-maker/output)
+set(ffmpeg_dir ${CMAKE_SOURCE_DIR}/../../../../ffmpeg-android-maker/output)
 set(ffmpeg_libs ${ffmpeg_dir}/lib/${ANDROID_ABI})
 
-include_directories(${ffmpeg_dir}/include/${ANDROID_ABI})
+include_directories(
+        # Headers of FFmpeg
+        ${ffmpeg_dir}/include/${ANDROID_ABI}
+        # Our own headers
+        .
+)
 
 set(
         # List variable name
@@ -30,16 +35,16 @@ add_library(
         # Type of a library
         SHARED
         # All cpp files to compile
-        src/main/cpp/Main.cpp
-        src/main/cpp/log/ffmpeg.cpp
-        src/main/cpp/MediaFileContext.cpp
-        src/main/cpp/MediaFileUtility.cpp
-        src/main/cpp/MediaFileBuilder.cpp
-        src/main/cpp/MediaFileFrameLoader.cpp
-        src/main/cpp/MediaFileFrameLoader_jni.cpp
-        src/main/cpp/MediaFileContext_jni.cpp
-        src/main/cpp/MediaFileFactory_jni.cpp
-        src/main/cpp/MediaSource_jni.cpp)
+        Main.cpp
+        log/ffmpeg.cpp
+        MediaFile/Context.cpp
+        MediaFile/Builder.cpp
+        MediaFileUtility.cpp
+        MediaFileFrameLoader.cpp
+        MediaFileFrameLoader_jni.cpp
+        MediaFileContext_jni.cpp
+        MediaFileFactory_jni.cpp
+        MediaSource_jni.cpp)
 
 target_link_libraries(
         # Library to link
