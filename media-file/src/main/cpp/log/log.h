@@ -2,8 +2,7 @@
 // Created by Oleksandr Berezhnyi on 25/03/19.
 //
 
-#ifndef WHATTHECODEC_LOG_H
-#define WHATTHECODEC_LOG_H
+#pragma once
 
 #define LOG_TAG  "WhatTheCodec"
 
@@ -23,5 +22,3 @@
 # define LOGW(...)  (void)0
 # define LOGE(...)  (void)0
 #endif
-
-#endif //WHATTHECODEC_LOG_H

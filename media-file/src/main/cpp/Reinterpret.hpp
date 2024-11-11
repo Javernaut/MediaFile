@@ -2,8 +2,7 @@
 // Created by Oleksandr Berezhnyi on 19.10.2024.
 //
 
-#ifndef WHATTHECODEC_REINTERPRET_HPP
-#define WHATTHECODEC_REINTERPRET_HPP
+#pragma once
 
 #include <jni.h>
 
@@ -20,5 +19,3 @@ namespace Reinterpret {
         return ptr == nullptr ? NO_REF : reinterpret_cast<jlong>(ptr);
     }
 }
-
-#endif //WHATTHECODEC_REINTERPRET_HPP

@@ -2,8 +2,7 @@
 // Created by Oleksandr Berezhnyi on 20.10.2024.
 //
 
-#ifndef WHATTHECODEC_MEDIAFILEFRAMELOADER_HPP
-#define WHATTHECODEC_MEDIAFILEFRAMELOADER_HPP
+#pragma once
 
 #include <jni.h>
 #include "MediaFileContext.hpp"
@@ -37,6 +36,3 @@ public:
 
     static MediaFileFrameLoader *create(MediaFileContext *mediaFileContext, int totalFramesToRead);
 };
-
-
-#endif //WHATTHECODEC_MEDIAFILEFRAMELOADER_HPP

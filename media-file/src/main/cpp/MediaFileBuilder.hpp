@@ -2,9 +2,7 @@
 // Created by Oleksandr Berezhnyi on 20.10.2024.
 //
 
-#ifndef WHATTHECODEC_MEDIAFILEBUILDER_HPP
-#define WHATTHECODEC_MEDIAFILEBUILDER_HPP
-
+#pragma once
 
 #include <jni.h>
 #include "MediaFileContext.hpp"
@@ -18,6 +16,3 @@ public:
 
     static void reset();
 };
-
-
-#endif //WHATTHECODEC_MEDIAFILEBUILDER_HPP

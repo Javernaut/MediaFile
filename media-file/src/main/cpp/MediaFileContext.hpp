@@ -2,8 +2,7 @@
 // Created by Oleksandr Berezhnyi on 18.10.2024.
 //
 
-#ifndef WHATTHECODEC_MEDIAFILECONTEXT_HPP
-#define WHATTHECODEC_MEDIAFILECONTEXT_HPP
+#pragma once
 
 extern "C" {
 #include <libavformat/avformat.h>
@@ -28,6 +27,3 @@ public:
             const char *formatNameHint
     );
 };
-
-
-#endif //WHATTHECODEC_MEDIAFILECONTEXT_HPP
