@@ -23,8 +23,8 @@ public:
     static MediaFileContext *open(const char *url);
 
     static MediaFileContext *open(
-            const char *url,
-            long long skip_initial_bytes,
+            int32_t file_descriptor,
+            int64_t skip_initial_bytes,
             const char *formatNameHint
     );
 };

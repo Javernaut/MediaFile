@@ -2,6 +2,7 @@
 // Created by Oleksandr Berezhnyi on 18.10.2024.
 //
 
+#include <string>
 #include "MediaFileContext.h"
 
 MediaFileContext::MediaFileContext(AVFormatContext *avFormatContext) :
@@ -11,32 +12,44 @@ MediaFileContext::~MediaFileContext() {
     avformat_close_input(&avFormatContext);
 }
 
-static MediaFileContext *openMediaFileContext(const char *url, AVFormatContext *predefinedContext) {
-    if (avformat_open_input(&predefinedContext, url, nullptr, nullptr)) {
-        return nullptr;
-    }
-    return new MediaFileContext(predefinedContext);
+AVFormatContext *MediaFileContext::getAvFormatContext() const {
+    return avFormatContext;
 }
 
 MediaFileContext *MediaFileContext::open(const char *url) {
-    return openMediaFileContext(url, nullptr);
+    AVFormatContext *avFormatContext = nullptr;
+    if (avformat_open_input(&avFormatContext, url, nullptr, nullptr)) {
+        return nullptr;
+    }
+    return new MediaFileContext(avFormatContext);
 }
 
 MediaFileContext *MediaFileContext::open(
-        const char *url,
-        long long skip_initial_bytes,
+        int32_t file_descriptor,
+        int64_t skip_initial_bytes,
         const char *formatNameHint
 ) {
     AVFormatContext *predefinedContext = avformat_alloc_context();
-    predefinedContext->skip_initial_bytes = skip_initial_bytes;
-    predefinedContext->iformat = av_find_input_format(formatNameHint);
-    auto result = openMediaFileContext(url, predefinedContext);
-    if (result == nullptr) {
-        avformat_free_context(predefinedContext);
-    }
-    return result;
-}
 
-AVFormatContext *MediaFileContext::getAvFormatContext() const {
-    return avFormatContext;
+    if (skip_initial_bytes > 0) {
+        predefinedContext->skip_initial_bytes = skip_initial_bytes;
+    }
+
+    if (formatNameHint != nullptr) {
+        predefinedContext->iformat = av_find_input_format(formatNameHint);
+    }
+
+    AVDictionary *options = nullptr;
+    av_dict_set(&options, "fd", std::to_string(file_descriptor).c_str(), 0);
+
+    int result = avformat_open_input(&predefinedContext, "fd:", nullptr, &options);
+
+    av_dict_free(&options);
+
+    if (result) {
+        avformat_free_context(predefinedContext);
+        return nullptr;
+    }
+
+    return new MediaFileContext(predefinedContext);
 }

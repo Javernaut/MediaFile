@@ -4,9 +4,8 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.google.common.truth.Truth.assertThat
 import io.github.javernaut.mediafile.creator.MediaType
-import io.github.javernaut.mediafile.factory.Asset
 import io.github.javernaut.mediafile.factory.MediaFileFactory
-import io.github.javernaut.mediafile.factory.Protocol
+import io.github.javernaut.mediafile.factory.MediaSource
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -23,7 +22,7 @@ class MediaFileTest {
         val assetFileDescriptor = context.assets.openFd(testVideoFileName)
 
         val mediaFileContext = MediaFileFactory.create(
-            Asset(assetFileDescriptor, "matroska", Protocol.PIPE),
+            MediaSource.FileDescriptor(assetFileDescriptor, "matroska"),
             MediaType.VIDEO
         )
 
@@ -88,7 +87,7 @@ class MediaFileTest {
         val assetFileDescriptor = context.assets.openFd(testAudioFileName)
 
         val mediaFileContext = MediaFileFactory.create(
-            Asset(assetFileDescriptor, "aac", Protocol.PIPE),
+            MediaSource.FileDescriptor(assetFileDescriptor, "aac"),
             MediaType.AUDIO
         )
 

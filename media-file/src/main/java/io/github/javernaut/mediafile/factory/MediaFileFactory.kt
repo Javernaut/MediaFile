@@ -17,16 +17,11 @@ object MediaFileFactory {
 
     private external fun nativeInitWith(context: Context)
 
-    fun create(request: Request, type: MediaType): MediaFileContext? {
-        return request.openContext()
+    fun create(source: MediaSource, type: MediaType): MediaFileContext? {
+        return source.openContext()
             .takeIf { it.isValid }
             ?.let {
                 MediaFileContext(it, type)
             }
     }
-}
-
-enum class Protocol {
-    FD,
-    PIPE
 }
