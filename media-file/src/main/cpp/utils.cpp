@@ -5,7 +5,6 @@
 #include "utils.h"
 #include "log/log.h"
 
-struct fields fields;
 static JavaVM *javaVM;
 
 JNIEnv *utils_get_env() {
@@ -24,65 +23,65 @@ int utils_fields_init(JavaVM *vm) {
         return -1;
     }
 
-#define GET_CLASS(clazz, str, b_globlal) do { \
-    (clazz) = env->FindClass((str)); \
-    if (!(clazz)) { \
-        LOGE("FindClass(%s) failed", (str)); \
-        return -1; \
-    } \
-    if (b_globlal) { \
-        (clazz) = (jclass) env->NewGlobalRef((clazz)); \
-        if (!(clazz)) { \
-            LOGE("NewGlobalRef(%s) failed", (str)); \
-            return -1; \
-        } \
-    } \
-} while (0)
-
-#define GET_ID(get, id, clazz, str, args) do { \
-    (id) = env->get((clazz), (str), (args)); \
-    if (!(id)) { \
-        LOGE(#get"(%s) failed", (str)); \
-        return -1; \
-    } \
-} while (0)
+//#define GET_CLASS(clazz, str, b_globlal) do { \
+//    (clazz) = env->FindClass((str)); \
+//    if (!(clazz)) { \
+//        LOGE("FindClass(%s) failed", (str)); \
+//        return -1; \
+//    } \
+//    if (b_globlal) { \
+//        (clazz) = (jclass) env->NewGlobalRef((clazz)); \
+//        if (!(clazz)) { \
+//            LOGE("NewGlobalRef(%s) failed", (str)); \
+//            return -1; \
+//        } \
+//    } \
+//} while (0)
+//
+//#define GET_ID(get, id, clazz, str, args) do { \
+//    (id) = env->get((clazz), (str), (args)); \
+//    if (!(id)) { \
+//        LOGE(#get"(%s) failed", (str)); \
+//        return -1; \
+//    } \
+//} while (0)
 
     // Actual work
 
-    GET_CLASS(fields.MediaFileBuilder.clazz,
-              "io/github/javernaut/mediafile/creator/MediaFileBuilder", true);
-
-    GET_ID(GetMethodID,
-           fields.MediaFileBuilder.onErrorID,
-           fields.MediaFileBuilder.clazz,
-           "onError", "()V");
-
-    GET_ID(GetMethodID,
-           fields.MediaFileBuilder.createBasicInfoID,
-           fields.MediaFileBuilder.clazz,
-           "createBasicInfo",
-           "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)Lio/github/javernaut/mediafile/BasicStreamInfo;");
-
-    GET_ID(GetMethodID,
-           fields.MediaFileBuilder.onMediaFileFoundID,
-           fields.MediaFileBuilder.clazz,
-           "onMediaFileFound", "(Ljava/lang/String;)V");
-
-    GET_ID(GetMethodID,
-           fields.MediaFileBuilder.onVideoStreamFoundID,
-           fields.MediaFileBuilder.clazz,
-           "onVideoStreamFound", "(Lio/github/javernaut/mediafile/BasicStreamInfo;JDIIJ)V");
-
-    GET_ID(GetMethodID,
-           fields.MediaFileBuilder.onAudioStreamFoundID,
-           fields.MediaFileBuilder.clazz,
-           "onAudioStreamFound",
-           "(Lio/github/javernaut/mediafile/BasicStreamInfo;JLjava/lang/String;IILjava/lang/String;)V");
-
-    GET_ID(GetMethodID,
-           fields.MediaFileBuilder.onSubtitleStreamFoundID,
-           fields.MediaFileBuilder.clazz,
-           "onSubtitleStreamFound", "(Lio/github/javernaut/mediafile/BasicStreamInfo;)V");
+//    GET_CLASS(fields.MediaFileBuilder.clazz,
+//              "io/github/javernaut/mediafile/creator/MediaFileBuilder", true);
+//
+//    GET_ID(GetMethodID,
+//           fields.MediaFileBuilder.onErrorID,
+//           fields.MediaFileBuilder.clazz,
+//           "onError", "()V");
+//
+//    GET_ID(GetMethodID,
+//           fields.MediaFileBuilder.createBasicInfoID,
+//           fields.MediaFileBuilder.clazz,
+//           "createBasicInfo",
+//           "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)Lio/github/javernaut/mediafile/BasicStreamInfo;");
+//
+//    GET_ID(GetMethodID,
+//           fields.MediaFileBuilder.onMediaFileFoundID,
+//           fields.MediaFileBuilder.clazz,
+//           "onMediaFileFound", "(Ljava/lang/String;)V");
+//
+//    GET_ID(GetMethodID,
+//           fields.MediaFileBuilder.onVideoStreamFoundID,
+//           fields.MediaFileBuilder.clazz,
+//           "onVideoStreamFound", "(Lio/github/javernaut/mediafile/BasicStreamInfo;JDIIJ)V");
+//
+//    GET_ID(GetMethodID,
+//           fields.MediaFileBuilder.onAudioStreamFoundID,
+//           fields.MediaFileBuilder.clazz,
+//           "onAudioStreamFound",
+//           "(Lio/github/javernaut/mediafile/BasicStreamInfo;JLjava/lang/String;IILjava/lang/String;)V");
+//
+//    GET_ID(GetMethodID,
+//           fields.MediaFileBuilder.onSubtitleStreamFoundID,
+//           fields.MediaFileBuilder.clazz,
+//           "onSubtitleStreamFound", "(Lio/github/javernaut/mediafile/BasicStreamInfo;)V");
 
     return 0;
 }
@@ -93,7 +92,7 @@ void utils_fields_free(JavaVM *vm) {
         return;
     }
 
-    env->DeleteGlobalRef(fields.MediaFileBuilder.clazz);
+//    env->DeleteGlobalRef(fields.MediaFileBuilder.clazz);
 
     javaVM = nullptr;
 }

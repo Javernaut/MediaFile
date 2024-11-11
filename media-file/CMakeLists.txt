@@ -31,9 +31,6 @@ add_library(
         SHARED
         # All cpp files to compile
         src/main/cpp/main.cpp
-        src/main/cpp/media_file_builder.cpp
-        src/main/cpp/media_file_builder_jni.cpp
-        src/main/cpp/frame_loader_context.cpp
         src/main/cpp/log/ffmpeg.cpp
         src/main/cpp/MediaFileContext.cpp
         src/main/cpp/MediaFileUtility.cpp

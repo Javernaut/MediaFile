@@ -41,22 +41,4 @@ void utils_call_instance_method_void(jobject instance, jmethodID methodID, ...);
  */
 jobject utils_call_instance_method_result(jobject instance, jmethodID methodID, ...);
 
-// The approach was taken from here:
-// https://code.videolan.org/videolan/vlc-android/blob/master/libvlc/jni/utils.h
-// https://code.videolan.org/videolan/vlc-android/blob/master/libvlc/jni/libvlcjni.c
-
-struct fields {
-    struct {
-        jclass clazz;
-        jmethodID onMediaFileFoundID;
-        jmethodID onVideoStreamFoundID;
-        jmethodID onAudioStreamFoundID;
-        jmethodID onSubtitleStreamFoundID;
-        jmethodID onErrorID;
-        jmethodID createBasicInfoID;
-    } MediaFileBuilder;
-};
-
-extern struct fields fields;
-
 #endif //WHATTHECODEC_UTILS_H
