@@ -3,7 +3,7 @@
 //
 #include <jni.h>
 #include <MediaFile/Context.hpp>
-#include <Reinterpret.hpp>
+#include <jni/Reinterpret.hpp>
 
 extern "C"
 JNIEXPORT jlong JNICALL

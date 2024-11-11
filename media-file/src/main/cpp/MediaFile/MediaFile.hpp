@@ -4,7 +4,7 @@
 
 #pragma once
 
-namespace MediaFileUtility {
+namespace MediaFile {
     void setAndroidContext(void *);
 
     void setJavaVM(JavaVM *vm);

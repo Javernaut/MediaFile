@@ -39,7 +39,7 @@ add_library(
         log/ffmpeg.cpp
         MediaFile/Context.cpp
         MediaFile/Builder.cpp
-        MediaFile/MediaFileUtility.cpp
+        MediaFile/MediaFile.cpp
         MediaFile/FrameLoader.cpp
         jni/MediaFileFrameLoader_jni.cpp
         jni/MediaFileContext_jni.cpp

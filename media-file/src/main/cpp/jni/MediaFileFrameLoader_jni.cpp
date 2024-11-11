@@ -4,7 +4,7 @@
 
 #include <jni.h>
 #include <MediaFile/FrameLoader.hpp>
-#include <Reinterpret.hpp>
+#include <jni/Reinterpret.hpp>
 
 extern "C"
 JNIEXPORT jboolean JNICALL

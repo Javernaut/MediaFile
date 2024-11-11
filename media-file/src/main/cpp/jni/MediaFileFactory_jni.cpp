@@ -2,7 +2,7 @@
 // Created by Oleksandr Berezhnyi on 18.10.2024.
 //
 #include <jni.h>
-#include <MediaFile/MediaFileUtility.hpp>
+#include <MediaFile/MediaFile.hpp>
 
 extern "C"
 JNIEXPORT void JNICALL
@@ -11,7 +11,7 @@ Java_io_github_javernaut_mediafile_factory_MediaFileFactory_nativeInitWith(
         jobject thiz,
         jobject context
 ) {
-    MediaFileUtility::setAndroidContext(
+    MediaFile::setAndroidContext(
             env->NewGlobalRef(context)
     );
 }

@@ -4,7 +4,7 @@
 #include <jni.h>
 #include <MediaFile/Context.hpp>
 #include <MediaFile/Builder.hpp>
-#include <Reinterpret.hpp>
+#include <jni/Reinterpret.hpp>
 
 extern "C"
 JNIEXPORT void JNICALL
