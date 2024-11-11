@@ -3,7 +3,7 @@
 //
 
 #include <string>
-#include "MediaFileContext.h"
+#include "MediaFileContext.hpp"
 
 MediaFileContext::MediaFileContext(AVFormatContext *avFormatContext) :
         avFormatContext(avFormatContext) {}

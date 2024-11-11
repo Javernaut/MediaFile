@@ -2,12 +2,12 @@
 // Created by Oleksandr Berezhnyi on 20.10.2024.
 //
 
-#ifndef WHATTHECODEC_MEDIAFILEBUILDER_H
-#define WHATTHECODEC_MEDIAFILEBUILDER_H
+#ifndef WHATTHECODEC_MEDIAFILEBUILDER_HPP
+#define WHATTHECODEC_MEDIAFILEBUILDER_HPP
 
 
 #include <jni.h>
-#include "MediaFileContext.h"
+#include "MediaFileContext.hpp"
 
 class MediaFileBuilder {
 public:
@@ -20,4 +20,4 @@ public:
 };
 
 
-#endif //WHATTHECODEC_MEDIAFILEBUILDER_H
+#endif //WHATTHECODEC_MEDIAFILEBUILDER_HPP

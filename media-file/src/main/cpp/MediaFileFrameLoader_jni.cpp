@@ -3,8 +3,8 @@
 //
 
 #include <jni.h>
-#include "Reinterpret.h"
-#include "MediaFileFrameLoader.h"
+#include "Reinterpret.hpp"
+#include "MediaFileFrameLoader.hpp"
 
 extern "C"
 JNIEXPORT jboolean JNICALL

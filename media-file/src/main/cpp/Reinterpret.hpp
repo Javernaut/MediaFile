@@ -2,8 +2,8 @@
 // Created by Oleksandr Berezhnyi on 19.10.2024.
 //
 
-#ifndef WHATTHECODEC_REINTERPRET_H
-#define WHATTHECODEC_REINTERPRET_H
+#ifndef WHATTHECODEC_REINTERPRET_HPP
+#define WHATTHECODEC_REINTERPRET_HPP
 
 #include <jni.h>
 
@@ -21,4 +21,4 @@ namespace Reinterpret {
     }
 }
 
-#endif //WHATTHECODEC_REINTERPRET_H
+#endif //WHATTHECODEC_REINTERPRET_HPP

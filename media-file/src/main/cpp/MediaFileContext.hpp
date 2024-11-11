@@ -2,8 +2,8 @@
 // Created by Oleksandr Berezhnyi on 18.10.2024.
 //
 
-#ifndef WHATTHECODEC_MEDIAFILECONTEXT_H
-#define WHATTHECODEC_MEDIAFILECONTEXT_H
+#ifndef WHATTHECODEC_MEDIAFILECONTEXT_HPP
+#define WHATTHECODEC_MEDIAFILECONTEXT_HPP
 
 extern "C" {
 #include <libavformat/avformat.h>
@@ -30,4 +30,4 @@ public:
 };
 
 
-#endif //WHATTHECODEC_MEDIAFILECONTEXT_H
+#endif //WHATTHECODEC_MEDIAFILECONTEXT_HPP

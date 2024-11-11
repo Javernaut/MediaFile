@@ -2,11 +2,11 @@
 // Created by Oleksandr Berezhnyi on 20.10.2024.
 //
 
-#ifndef WHATTHECODEC_MEDIAFILEFRAMELOADER_H
-#define WHATTHECODEC_MEDIAFILEFRAMELOADER_H
+#ifndef WHATTHECODEC_MEDIAFILEFRAMELOADER_HPP
+#define WHATTHECODEC_MEDIAFILEFRAMELOADER_HPP
 
 #include <jni.h>
-#include "MediaFileContext.h"
+#include "MediaFileContext.hpp"
 
 extern "C" {
 #include <libavformat/avformat.h>
@@ -39,4 +39,4 @@ public:
 };
 
 
-#endif //WHATTHECODEC_MEDIAFILEFRAMELOADER_H
+#endif //WHATTHECODEC_MEDIAFILEFRAMELOADER_HPP

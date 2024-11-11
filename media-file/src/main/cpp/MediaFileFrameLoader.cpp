@@ -2,7 +2,7 @@
 // Created by Oleksandr Berezhnyi on 20.10.2024.
 //
 
-#include "MediaFileFrameLoader.h"
+#include "MediaFileFrameLoader.hpp"
 #include <android/bitmap.h>
 
 extern "C" {

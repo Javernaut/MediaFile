@@ -2,7 +2,7 @@
 // Created by Oleksandr Berezhnyi on 20.10.2024.
 //
 
-#include "MediaFileBuilder.h"
+#include "MediaFileBuilder.hpp"
 #include "log/log.h"
 
 extern "C" {

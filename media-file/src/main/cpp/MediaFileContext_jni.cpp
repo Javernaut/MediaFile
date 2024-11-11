@@ -2,9 +2,9 @@
 // Created by Oleksandr Berezhnyi on 18.10.2024.
 //
 #include <jni.h>
-#include "MediaFileContext.h"
-#include "MediaFileBuilder.h"
-#include "Reinterpret.h"
+#include "MediaFileContext.hpp"
+#include "MediaFileBuilder.hpp"
+#include "Reinterpret.hpp"
 
 extern "C"
 JNIEXPORT void JNICALL

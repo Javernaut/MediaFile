@@ -3,8 +3,8 @@
 //
 
 #include <jni.h>
-#include "MediaFileUtility.h"
-#include "MediaFileBuilder.h"
+#include "MediaFileUtility.hpp"
+#include "MediaFileBuilder.hpp"
 
 extern "C" {
 #include <libavcodec/jni.h>

@@ -1,7 +1,7 @@
 #include <jni.h>
 
 #include "log/ffmpeg.h"
-#include "MediaFileUtility.h"
+#include "MediaFileUtility.hpp"
 
 // This function is called when the native library is loaded.
 jint JNI_OnLoad(JavaVM *vm, void *reserved) {

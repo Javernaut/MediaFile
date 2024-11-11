@@ -30,7 +30,7 @@ add_library(
         # Type of a library
         SHARED
         # All cpp files to compile
-        src/main/cpp/main.cpp
+        src/main/cpp/Main.cpp
         src/main/cpp/log/ffmpeg.cpp
         src/main/cpp/MediaFileContext.cpp
         src/main/cpp/MediaFileUtility.cpp
