@@ -3,8 +3,8 @@
 //
 
 #include <jni.h>
-#include "Reinterpret.hpp"
-#include "MediaFileFrameLoader.hpp"
+#include <MediaFile/FrameLoader.hpp>
+#include <Reinterpret.hpp>
 
 extern "C"
 JNIEXPORT jboolean JNICALL
@@ -14,7 +14,7 @@ Java_io_github_javernaut_mediafile_MediaFileFrameLoader_nativeLoadFrame(
         jlong handle,
         jobject bitmap
 ) {
-    auto frameLoader = Reinterpret::fromHandle<MediaFileFrameLoader>(handle);
+    auto frameLoader = Reinterpret::fromHandle<MediaFile::FrameLoader>(handle);
     return frameLoader->loadFrame(env, bitmap);
 }
 
@@ -28,7 +28,7 @@ Java_io_github_javernaut_mediafile_MediaFileFrameLoader_nativeCreateFrameLoader(
         jint totalFramesToRead
 ) {
     auto mediaFileContext = Reinterpret::fromHandle<MediaFile::Context>(contextHandle);
-    auto mediaFileFrameLoader = MediaFileFrameLoader::create(mediaFileContext, totalFramesToRead);
+    auto mediaFileFrameLoader = MediaFile::FrameLoader::create(mediaFileContext, totalFramesToRead);
     return Reinterpret::toHandle(mediaFileFrameLoader);
 }
 
@@ -39,5 +39,5 @@ Java_io_github_javernaut_mediafile_MediaFileFrameLoader_dispose(
         jclass clazz,
         jlong frameLoaderHandle
 ) {
-    delete Reinterpret::fromHandle<MediaFileFrameLoader>(frameLoaderHandle);
+    delete Reinterpret::fromHandle<MediaFile::FrameLoader>(frameLoaderHandle);
 }

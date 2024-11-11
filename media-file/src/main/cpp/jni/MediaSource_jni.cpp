@@ -2,8 +2,8 @@
 // Created by Oleksandr Berezhnyi on 10.11.2024.
 //
 #include <jni.h>
-#include "MediaFile/Context.hpp"
-#include "Reinterpret.hpp"
+#include <MediaFile/Context.hpp>
+#include <Reinterpret.hpp>
 
 extern "C"
 JNIEXPORT jlong JNICALL

@@ -39,12 +39,12 @@ add_library(
         log/ffmpeg.cpp
         MediaFile/Context.cpp
         MediaFile/Builder.cpp
-        MediaFileUtility.cpp
-        MediaFileFrameLoader.cpp
-        MediaFileFrameLoader_jni.cpp
-        MediaFileContext_jni.cpp
-        MediaFileFactory_jni.cpp
-        MediaSource_jni.cpp)
+        MediaFile/MediaFileUtility.cpp
+        MediaFile/FrameLoader.cpp
+        jni/MediaFileFrameLoader_jni.cpp
+        jni/MediaFileContext_jni.cpp
+        jni/MediaFileFactory_jni.cpp
+        jni/MediaSource_jni.cpp)
 
 target_link_libraries(
         # Library to link

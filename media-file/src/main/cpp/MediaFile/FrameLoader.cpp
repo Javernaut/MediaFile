@@ -2,7 +2,7 @@
 // Created by Oleksandr Berezhnyi on 20.10.2024.
 //
 
-#include "MediaFileFrameLoader.hpp"
+#include <MediaFile/FrameLoader.hpp>
 #include <android/bitmap.h>
 
 extern "C" {
@@ -21,7 +21,7 @@ int get_video_stream_index(AVFormatContext *formatContext) {
     return -1; // No video stream found
 }
 
-MediaFileFrameLoader *MediaFileFrameLoader::create(
+MediaFile::FrameLoader *MediaFile::FrameLoader::create(
         MediaFile::Context *mediaFileContext,
         int totalFramesToRead
 ) {
@@ -36,7 +36,7 @@ MediaFileFrameLoader *MediaFileFrameLoader::create(
 
     auto *decoder = avcodec_find_decoder(parameters->codec_id);
     if (decoder != nullptr) {
-        return new MediaFileFrameLoader(
+        return new MediaFile::FrameLoader(
                 avFormatContext, parameters, decoder, videoStreamIndex, totalFramesToRead
         );
     }
@@ -44,7 +44,7 @@ MediaFileFrameLoader *MediaFileFrameLoader::create(
     return nullptr;
 }
 
-MediaFileFrameLoader::MediaFileFrameLoader(
+MediaFile::FrameLoader::FrameLoader(
         AVFormatContext *avFormatContext,
         AVCodecParameters *parameters,
         const AVCodec *avVideoCodec,
@@ -56,7 +56,7 @@ MediaFileFrameLoader::MediaFileFrameLoader(
     videoStreamIndex(videoStreamIndex),
     totalFramesToRead(totalFramesToRead) {}
 
-static bool frame_extractor_load_frame(MediaFileFrameLoader *mediaFileFrameLoader, JNIEnv *env,
+static bool frame_extractor_load_frame(MediaFile::FrameLoader *mediaFileFrameLoader, JNIEnv *env,
                                        jobject jBitmap) {
     AndroidBitmapInfo bitmapMetricInfo;
     AndroidBitmap_getInfo(env, jBitmap, &bitmapMetricInfo);
@@ -175,6 +175,6 @@ static bool frame_extractor_load_frame(MediaFileFrameLoader *mediaFileFrameLoade
 }
 
 
-bool MediaFileFrameLoader::loadFrame(JNIEnv *env, jobject bitmap) {
+bool MediaFile::FrameLoader::loadFrame(JNIEnv *env, jobject bitmap) {
     return frame_extractor_load_frame(this, env, bitmap);
 }

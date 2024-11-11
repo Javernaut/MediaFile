@@ -4,7 +4,7 @@
 
 #include <jni.h>
 #include <MediaFile/Builder.hpp>
-#include "MediaFileUtility.hpp"
+#include <MediaFile/MediaFileUtility.hpp>
 
 extern "C" {
 #include <libavcodec/jni.h>
