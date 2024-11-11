@@ -39,8 +39,7 @@ add_library(
         src/main/cpp/MediaFileFrameLoader_jni.cpp
         src/main/cpp/MediaFileContext_jni.cpp
         src/main/cpp/MediaFileFactory_jni.cpp
-        src/main/cpp/MediaSource_jni.cpp
-        src/main/cpp/utils.cpp)
+        src/main/cpp/MediaSource_jni.cpp)
 
 target_link_libraries(
         # Library to link

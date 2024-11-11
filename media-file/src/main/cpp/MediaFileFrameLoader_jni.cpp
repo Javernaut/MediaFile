@@ -15,7 +15,7 @@ Java_io_github_javernaut_mediafile_MediaFileFrameLoader_nativeLoadFrame(
         jobject bitmap
 ) {
     auto frameLoader = Reinterpret::fromHandle<MediaFileFrameLoader>(handle);
-    return frameLoader->loadFrame(bitmap);
+    return frameLoader->loadFrame(env, bitmap);
 }
 
 

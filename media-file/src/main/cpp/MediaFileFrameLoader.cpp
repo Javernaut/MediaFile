@@ -4,7 +4,6 @@
 
 #include "MediaFileFrameLoader.h"
 #include <android/bitmap.h>
-#include "utils.h"
 
 extern "C" {
 #include <libavformat/avformat.h>
@@ -57,8 +56,8 @@ MediaFileFrameLoader::MediaFileFrameLoader(
     videoStreamIndex(videoStreamIndex),
     totalFramesToRead(totalFramesToRead) {}
 
-bool frame_extractor_load_frame(MediaFileFrameLoader *mediaFileFrameLoader, jobject jBitmap) {
-    JNIEnv *env = utils_get_env();
+static bool frame_extractor_load_frame(MediaFileFrameLoader *mediaFileFrameLoader, JNIEnv *env,
+                                       jobject jBitmap) {
     AndroidBitmapInfo bitmapMetricInfo;
     AndroidBitmap_getInfo(env, jBitmap, &bitmapMetricInfo);
 
@@ -176,6 +175,6 @@ bool frame_extractor_load_frame(MediaFileFrameLoader *mediaFileFrameLoader, jobj
 }
 
 
-bool MediaFileFrameLoader::loadFrame(jobject bitmap) {
-    return frame_extractor_load_frame(this, bitmap);
+bool MediaFileFrameLoader::loadFrame(JNIEnv *env, jobject bitmap) {
+    return frame_extractor_load_frame(this, env, bitmap);
 }

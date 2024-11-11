@@ -22,4 +22,5 @@ void MediaFileUtility::setJavaVM(JavaVM *vm) {
 void MediaFileUtility::reset() {
     setAndroidContext(nullptr);
     setJavaVM(nullptr);
+    MediaFileBuilder::reset();
 }

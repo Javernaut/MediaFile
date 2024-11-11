@@ -33,7 +33,7 @@ public:
             int totalFramesToRead
     );
 
-    bool loadFrame(jobject bitmap);
+    bool loadFrame(JNIEnv *env, jobject bitmap);
 
     static MediaFileFrameLoader *create(MediaFileContext *mediaFileContext, int totalFramesToRead);
 };

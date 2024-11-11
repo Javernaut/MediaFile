@@ -106,7 +106,7 @@ static int utils_fields_init(JavaVM *vm) {
     return 0;
 }
 
-void utils_fields_free() {
+static void utils_fields_free() {
     JNIEnv *env = utils_get_env();
     if (env == nullptr) {
         return;
