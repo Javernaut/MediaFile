@@ -1,6 +1,6 @@
 package io.github.javernaut.mediafile.displayable
 
-import io.github.javernaut.mediafile.BasicStreamInfo
+import io.github.javernaut.mediafile.model.BasicStreamInfo
 import java.util.Locale
 
 val BasicStreamInfo.displayableLanguage: String?

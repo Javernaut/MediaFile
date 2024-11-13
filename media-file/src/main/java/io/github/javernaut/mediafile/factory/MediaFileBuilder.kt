@@ -1,11 +1,11 @@
 package io.github.javernaut.mediafile.factory
 
 import androidx.annotation.Keep
-import io.github.javernaut.mediafile.AudioStream
-import io.github.javernaut.mediafile.BasicStreamInfo
-import io.github.javernaut.mediafile.MediaFile
-import io.github.javernaut.mediafile.SubtitleStream
-import io.github.javernaut.mediafile.VideoStream
+import io.github.javernaut.mediafile.model.AudioStream
+import io.github.javernaut.mediafile.model.BasicStreamInfo
+import io.github.javernaut.mediafile.model.MediaFile
+import io.github.javernaut.mediafile.model.SubtitleStream
+import io.github.javernaut.mediafile.model.VideoStream
 
 /**
  * Class that aggregates a creation process of a [MediaFile] object. Certain private methods are

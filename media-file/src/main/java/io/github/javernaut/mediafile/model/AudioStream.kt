@@ -1,4 +1,4 @@
-package io.github.javernaut.mediafile
+package io.github.javernaut.mediafile.model
 
 class AudioStream internal constructor(
     override val basicInfo: BasicStreamInfo,

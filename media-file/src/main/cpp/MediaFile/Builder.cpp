@@ -80,7 +80,7 @@ static int utils_fields_init(JavaVM *vm) {
            fields.MediaFileBuilder.createBasicInfoID,
            fields.MediaFileBuilder.clazz,
            "createBasicInfo",
-           "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)Lio/github/javernaut/mediafile/BasicStreamInfo;");
+           "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)Lio/github/javernaut/mediafile/model/BasicStreamInfo;");
 
     GET_ID(GetMethodID,
            fields.MediaFileBuilder.onMediaFileFoundID,
@@ -90,18 +90,18 @@ static int utils_fields_init(JavaVM *vm) {
     GET_ID(GetMethodID,
            fields.MediaFileBuilder.onVideoStreamFoundID,
            fields.MediaFileBuilder.clazz,
-           "onVideoStreamFound", "(Lio/github/javernaut/mediafile/BasicStreamInfo;JDII)V");
+           "onVideoStreamFound", "(Lio/github/javernaut/mediafile/model/BasicStreamInfo;JDII)V");
 
     GET_ID(GetMethodID,
            fields.MediaFileBuilder.onAudioStreamFoundID,
            fields.MediaFileBuilder.clazz,
            "onAudioStreamFound",
-           "(Lio/github/javernaut/mediafile/BasicStreamInfo;JLjava/lang/String;IILjava/lang/String;)V");
+           "(Lio/github/javernaut/mediafile/model/BasicStreamInfo;JLjava/lang/String;IILjava/lang/String;)V");
 
     GET_ID(GetMethodID,
            fields.MediaFileBuilder.onSubtitleStreamFoundID,
            fields.MediaFileBuilder.clazz,
-           "onSubtitleStreamFound", "(Lio/github/javernaut/mediafile/BasicStreamInfo;)V");
+           "onSubtitleStreamFound", "(Lio/github/javernaut/mediafile/model/BasicStreamInfo;)V");
 
     return 0;
 }

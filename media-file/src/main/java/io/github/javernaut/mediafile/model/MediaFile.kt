@@ -1,4 +1,4 @@
-package io.github.javernaut.mediafile
+package io.github.javernaut.mediafile.model
 
 /**
  * A structure that has metadata of a video or audio file and its media streams.

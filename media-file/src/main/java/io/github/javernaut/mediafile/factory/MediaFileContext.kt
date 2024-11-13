@@ -1,7 +1,7 @@
 package io.github.javernaut.mediafile.factory
 
-import io.github.javernaut.mediafile.MediaFile
 import io.github.javernaut.mediafile.creator.MediaType
+import io.github.javernaut.mediafile.model.MediaFile
 
 // Owns AVFormatContext pointer
 class MediaFileContext(

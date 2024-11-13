@@ -1,8 +1,8 @@
 package io.github.javernaut.mediafile.displayable
 
 import android.content.res.Resources
-import io.github.javernaut.mediafile.BitRate
 import io.github.javernaut.mediafile.R
+import io.github.javernaut.mediafile.model.BitRate
 import java.text.DecimalFormat
 import kotlin.math.roundToInt
 

@@ -1,4 +1,4 @@
-package io.github.javernaut.mediafile
+package io.github.javernaut.mediafile.model
 
 /**
  * Represents metadata of a video stream in a video file.
