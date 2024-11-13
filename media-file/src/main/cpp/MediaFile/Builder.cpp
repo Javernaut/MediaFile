@@ -3,7 +3,7 @@
 //
 
 #include <MediaFile/Builder.hpp>
-#include <log/log.h>
+#include <LogCat.h>
 
 extern "C" {
 #include <libavformat/avformat.h>
