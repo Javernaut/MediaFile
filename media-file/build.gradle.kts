@@ -31,11 +31,13 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        isCoreLibraryDesugaringEnabled = true
+
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
     ndkVersion = "27.2.12479018"
     externalNativeBuild {
@@ -46,6 +48,8 @@ android {
 }
 
 dependencies {
+    coreLibraryDesugaring(libs.desugaring.nio)
+
     implementation(libs.androidx.annotation)
 
     // Core library
