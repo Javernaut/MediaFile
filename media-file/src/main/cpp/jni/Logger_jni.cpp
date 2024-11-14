@@ -6,7 +6,7 @@
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_io_github_javernaut_mediafile_factory_Logger_nativeSetMinLevel(
+Java_io_github_javernaut_mediafile_Logger_nativeSetMinLevel(
         JNIEnv *env,
         jobject thiz,
         jint level

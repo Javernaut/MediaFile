@@ -1,4 +1,4 @@
-package io.github.javernaut.mediafile.creator
+package io.github.javernaut.mediafile.factory
 
 enum class MediaType(val mediaStreamsMask: Int) {
     VIDEO(STREAM_VIDEO or STREAM_AUDIO or STREAM_SUBTITLE),

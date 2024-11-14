@@ -3,9 +3,9 @@ package io.github.javernaut.mediafile
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.google.common.truth.Truth.assertThat
-import io.github.javernaut.mediafile.creator.MediaType
 import io.github.javernaut.mediafile.factory.MediaFileFactory
 import io.github.javernaut.mediafile.factory.MediaSource
+import io.github.javernaut.mediafile.factory.MediaType
 import org.junit.Test
 import org.junit.runner.RunWith
 

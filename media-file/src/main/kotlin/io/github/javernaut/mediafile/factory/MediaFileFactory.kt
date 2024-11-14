@@ -2,7 +2,6 @@ package io.github.javernaut.mediafile.factory
 
 import android.content.Context
 import io.github.javernaut.mediafile.MediaFile
-import io.github.javernaut.mediafile.creator.MediaType
 
 object MediaFileFactory {
     init {

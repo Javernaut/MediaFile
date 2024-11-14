@@ -1,4 +1,4 @@
-package io.github.javernaut.mediafile.factory
+package io.github.javernaut.mediafile
 
 object Logger {
 
