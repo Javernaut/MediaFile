@@ -15,14 +15,14 @@ void MediaFile::setAndroidContext(void *androidContext) {
     av_jni_set_android_app_ctx(androidContext, nullptr);
 }
 
-void MediaFile::setJavaVM(JavaVM *vm) {
+void MediaFile::init(JavaVM *vm) {
     av_jni_set_java_vm(vm, nullptr);
     MediaFile::Logger::init();
     MediaFile::Builder::init(vm);
 }
 
 void MediaFile::reset() {
-    setAndroidContext(nullptr);
-    setJavaVM(nullptr);
     MediaFile::Builder::reset();
+    setAndroidContext(nullptr);
+    av_jni_set_java_vm(nullptr, nullptr);
 }
