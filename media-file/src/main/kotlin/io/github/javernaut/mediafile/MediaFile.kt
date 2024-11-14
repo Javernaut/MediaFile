@@ -16,7 +16,7 @@ class MediaFile internal constructor(
     private val subResources = mutableListOf<AutoCloseable>()
 
     @Synchronized
-    fun readMetaData(): MediaInfo? {
+    fun readMetaInfo(): MediaInfo? {
         if (closed) return null
 
         val builder = MediaFileBuilder()
