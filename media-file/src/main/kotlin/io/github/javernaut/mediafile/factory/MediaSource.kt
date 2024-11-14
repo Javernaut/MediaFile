@@ -12,10 +12,10 @@ sealed class MediaSource {
 
     protected companion object {
         @JvmStatic
-        external fun openUrl(url: String): NativeHandle // MediaFileContext
+        external fun nativeOpenUrl(url: String): NativeHandle // MediaFileContext
 
         @JvmStatic
-        external fun openFileDescriptor(
+        external fun nativeOpenFileDescriptor(
             fileDescriptor: Int,
             skipInitialBytes: Long,
             formatNameHint: String?
@@ -24,7 +24,7 @@ sealed class MediaSource {
 
     // Expects a content://...
     class Content(private val uri: Uri) : MediaSource() {
-        override fun openContext() = openUrl(uri.toString())
+        override fun openContext() = nativeOpenUrl(uri.toString())
     }
 
     // Expects a file://...
@@ -40,7 +40,7 @@ sealed class MediaSource {
             filePath = file.absolutePathString()
         }
 
-        override fun openContext() = openUrl("file://$filePath")
+        override fun openContext() = nativeOpenUrl("file://$filePath")
     }
 
     // Takes ownership of the descriptor. No need to close it manually
@@ -61,7 +61,8 @@ sealed class MediaSource {
         }
 
         override fun openContext(): NativeHandle {
-            val result = openFileDescriptor(fileDescriptor.fd, skipInitialBytes, formatNameHint)
+            val result =
+                nativeOpenFileDescriptor(fileDescriptor.fd, skipInitialBytes, formatNameHint)
             if (result.isValid) {
                 // Once FFmpeg took the ownership of the file descriptor, we need to detach it here
                 fileDescriptor.detachFd()

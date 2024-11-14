@@ -20,7 +20,7 @@ class MediaFile internal constructor(
         if (closed) return null
 
         val builder = MediaFileBuilder()
-        readMetaData(nativeHandle, builder, mediaType.mediaStreamsMask)
+        nativeReadMetaInfo(nativeHandle, builder, mediaType.mediaStreamsMask)
         return builder.create()
     }
 
@@ -28,7 +28,7 @@ class MediaFile internal constructor(
     override fun close() {
         if (!closed) {
             subResources.forEach(AutoCloseable::close)
-            close(nativeHandle)
+            nativeClose(nativeHandle)
             closed = true
         }
     }
@@ -48,9 +48,9 @@ class MediaFile internal constructor(
             ?.also { register(it) }
     }
 
-    private external fun close(nativeHandle: NativeHandle) // MediaFileContext
+    private external fun nativeClose(nativeHandle: NativeHandle) // MediaFileContext
 
-    private external fun readMetaData(
+    private external fun nativeReadMetaInfo(
         nativeHandle: NativeHandle, // MediaFileContext
         builder: MediaFileBuilder,
         mediaStreamsMask: Int

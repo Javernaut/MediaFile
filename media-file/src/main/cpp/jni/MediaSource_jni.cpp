@@ -7,8 +7,8 @@
 
 extern "C"
 JNIEXPORT jlong JNICALL
-Java_io_github_javernaut_mediafile_factory_MediaSource_openUrl(JNIEnv *env, jclass clazz,
-                                                               jstring url) {
+Java_io_github_javernaut_mediafile_factory_MediaSource_nativeOpenUrl(JNIEnv *env, jclass clazz,
+                                                                     jstring url) {
     const char *cUrl = env->GetStringUTFChars(url, nullptr);
 
     auto context = MediaFile::Context::open(cUrl);
@@ -20,7 +20,7 @@ Java_io_github_javernaut_mediafile_factory_MediaSource_openUrl(JNIEnv *env, jcla
 
 extern "C"
 JNIEXPORT jlong JNICALL
-Java_io_github_javernaut_mediafile_factory_MediaSource_openFileDescriptor(
+Java_io_github_javernaut_mediafile_factory_MediaSource_nativeOpenFileDescriptor(
         JNIEnv *env,
         jclass clazz,
         jint file_descriptor,
