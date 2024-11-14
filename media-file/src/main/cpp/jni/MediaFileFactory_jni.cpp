@@ -3,6 +3,7 @@
 //
 #include <jni.h>
 #include <MediaFile/MediaFile.hpp>
+#include <MediaFile/Logger.hpp>
 
 extern "C"
 JNIEXPORT void JNICALL
@@ -14,4 +15,14 @@ Java_io_github_javernaut_mediafile_factory_MediaFileFactory_nativeInitWith(
     MediaFile::setAndroidContext(
             env->NewGlobalRef(context)
     );
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_io_github_javernaut_mediafile_factory_MediaFileFactory_nativeSetMinLogLevel(
+        JNIEnv *env,
+        jobject thiz,
+        jint level
+) {
+    MediaFile::Logger::setMinLevel(static_cast<MediaFile::Logger::Level>(level));
 }

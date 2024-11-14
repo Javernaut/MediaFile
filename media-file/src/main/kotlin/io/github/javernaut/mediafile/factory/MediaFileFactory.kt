@@ -15,7 +15,9 @@ object MediaFileFactory {
     // TODO Describe the importance of calling this in order to use content:// URIs
     fun initWith(context: Context) = nativeInitWith(context.applicationContext)
 
-    private external fun nativeInitWith(context: Context)
+    fun setMinLogLevel(level: LogLevel) {
+        nativeSetMinLogLevel(level.ordinal)
+    }
 
     fun create(source: MediaSource, type: MediaType): MediaFile? {
         return source.openContext()
@@ -23,5 +25,19 @@ object MediaFileFactory {
             ?.let {
                 MediaFile(it, type)
             }
+    }
+
+    private external fun nativeInitWith(context: Context)
+
+    private external fun nativeSetMinLogLevel(level: Int)
+
+    enum class LogLevel {
+        // No logging
+        QUITE,
+        FATAL,
+        ERROR,
+        WARN,
+        VERBOSE,
+        DEBUG
     }
 }

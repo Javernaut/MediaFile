@@ -45,7 +45,6 @@ add_library(
         jni/MediaFile_jni.cpp
         jni/MediaFileFactory_jni.cpp
         jni/MediaSource_jni.cpp
-        jni/Logger_jni.cpp
 )
 
 target_link_libraries(
