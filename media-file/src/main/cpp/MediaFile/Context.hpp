@@ -16,7 +16,7 @@ namespace MediaFile {
         // Takes ownership for the AVFormatContext
         explicit Context(AVFormatContext *avFormatContext);
 
-        AVFormatContext *getAvFormatContext() const;
+        [[nodiscard]] AVFormatContext *getAvFormatContext() const;
 
         ~Context();
 

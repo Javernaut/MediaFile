@@ -2,7 +2,6 @@ package io.github.javernaut.mediafile
 
 import android.graphics.Bitmap
 import io.github.javernaut.mediafile.FrameLoader.Companion.create
-import io.github.javernaut.mediafile.factory.MediaFileContext
 import io.github.javernaut.mediafile.factory.NativeHandle
 import io.github.javernaut.mediafile.factory.isValid
 
@@ -48,7 +47,7 @@ class FrameLoader internal constructor(
         ): NativeHandle // MediaFileFrameLoader
 
         internal fun create(
-            context: MediaFileContext,
+            context: MediaFile,
             totalFramesToRead: Int
         ): FrameLoader? {
             return context.produceSubResource { contextHandle ->
@@ -60,6 +59,6 @@ class FrameLoader internal constructor(
     }
 }
 
-fun MediaFileContext.getFrameLoader(totalFramesToRead: Int): FrameLoader? {
+fun MediaFile.getFrameLoader(totalFramesToRead: Int): FrameLoader? {
     return create(this, totalFramesToRead)
 }

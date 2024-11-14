@@ -1,6 +1,7 @@
 package io.github.javernaut.mediafile.factory
 
 import android.content.Context
+import io.github.javernaut.mediafile.MediaFile
 import io.github.javernaut.mediafile.creator.MediaType
 
 object MediaFileFactory {
@@ -17,11 +18,11 @@ object MediaFileFactory {
 
     private external fun nativeInitWith(context: Context)
 
-    fun create(source: MediaSource, type: MediaType): MediaFileContext? {
+    fun create(source: MediaSource, type: MediaType): MediaFile? {
         return source.openContext()
             .takeIf { it.isValid }
             ?.let {
-                MediaFileContext(it, type)
+                MediaFile(it, type)
             }
     }
 }

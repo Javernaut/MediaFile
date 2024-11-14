@@ -42,7 +42,7 @@ add_library(
         MediaFile/FrameLoader.cpp
         MediaFile/Logger.cpp
         jni/FrameLoader_jni.cpp
-        jni/MediaFileContext_jni.cpp
+        jni/MediaFile_jni.cpp
         jni/MediaFileFactory_jni.cpp
         jni/MediaSource_jni.cpp
         jni/Logger_jni.cpp

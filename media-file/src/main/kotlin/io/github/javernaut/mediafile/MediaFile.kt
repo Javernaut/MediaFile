@@ -1,10 +1,12 @@
-package io.github.javernaut.mediafile.factory
+package io.github.javernaut.mediafile
 
 import io.github.javernaut.mediafile.creator.MediaType
-import io.github.javernaut.mediafile.model.MediaFile
+import io.github.javernaut.mediafile.factory.MediaFileBuilder
+import io.github.javernaut.mediafile.factory.NativeHandle
+import io.github.javernaut.mediafile.model.MediaInfo
 
 // Owns AVFormatContext pointer
-class MediaFileContext(
+class MediaFile internal constructor(
     private val nativeHandle: NativeHandle, // MediaFileContext
     private val mediaType: MediaType
 ) : AutoCloseable {
@@ -14,7 +16,7 @@ class MediaFileContext(
     private val subResources = mutableListOf<AutoCloseable>()
 
     @Synchronized
-    fun readMetaData(): MediaFile? {
+    fun readMetaData(): MediaInfo? {
         if (closed) return null
 
         val builder = MediaFileBuilder()
@@ -26,7 +28,7 @@ class MediaFileContext(
     override fun close() {
         if (!closed) {
             subResources.forEach(AutoCloseable::close)
-            dispose(nativeHandle)
+            close(nativeHandle)
             closed = true
         }
     }
@@ -46,7 +48,7 @@ class MediaFileContext(
             ?.also { register(it) }
     }
 
-    private external fun dispose(nativeHandle: NativeHandle) // MediaFileContext
+    private external fun close(nativeHandle: NativeHandle) // MediaFileContext
 
     private external fun readMetaData(
         nativeHandle: NativeHandle, // MediaFileContext

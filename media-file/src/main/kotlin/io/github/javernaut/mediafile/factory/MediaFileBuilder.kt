@@ -3,12 +3,12 @@ package io.github.javernaut.mediafile.factory
 import androidx.annotation.Keep
 import io.github.javernaut.mediafile.model.AudioStream
 import io.github.javernaut.mediafile.model.BasicStreamInfo
-import io.github.javernaut.mediafile.model.MediaFile
+import io.github.javernaut.mediafile.model.MediaInfo
 import io.github.javernaut.mediafile.model.SubtitleStream
 import io.github.javernaut.mediafile.model.VideoStream
 
 /**
- * Class that aggregates a creation process of a [MediaFile] object. Certain private methods are
+ * Class that aggregates a creation process of a [MediaInfo] object. Certain private methods are
  * called from JNI layer.
  */
 internal class MediaFileBuilder {
@@ -23,12 +23,12 @@ internal class MediaFileBuilder {
     private var subtitleStream = mutableListOf<SubtitleStream>()
 
     /**
-     * Combines all data read from FFmpeg into a [MediaFile] object. If there was error during
+     * Combines all data read from FFmpeg into a [MediaInfo] object. If there was error during
      * metadata reading then null is returned.
      */
-    fun create(): MediaFile? {
+    fun create(): MediaInfo? {
         return if (!error) {
-            MediaFile(
+            MediaInfo(
                 fileFormatName!!,
                 videoStream,
                 audioStreams,

@@ -3,7 +3,7 @@ package io.github.javernaut.mediafile.model
 import androidx.annotation.Keep
 
 @Keep
-class BasicStreamInfo internal constructor(
+class BasicStreamInfo(
     val index: Int,
     val title: String?,
     val codecName: String,
