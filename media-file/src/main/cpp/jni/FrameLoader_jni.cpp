@@ -8,7 +8,7 @@
 
 extern "C"
 JNIEXPORT jboolean JNICALL
-Java_io_github_javernaut_mediafile_MediaFileFrameLoader_nativeLoadFrame(
+Java_io_github_javernaut_mediafile_FrameLoader_nativeLoadFrame(
         JNIEnv *env,
         jclass clazz,
         jlong handle,
@@ -21,7 +21,7 @@ Java_io_github_javernaut_mediafile_MediaFileFrameLoader_nativeLoadFrame(
 
 extern "C"
 JNIEXPORT jlong JNICALL
-Java_io_github_javernaut_mediafile_MediaFileFrameLoader_nativeCreateFrameLoader(
+Java_io_github_javernaut_mediafile_FrameLoader_nativeCreateFrameLoader(
         JNIEnv *env,
         jclass clazz,
         jlong contextHandle,
@@ -34,7 +34,7 @@ Java_io_github_javernaut_mediafile_MediaFileFrameLoader_nativeCreateFrameLoader(
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_io_github_javernaut_mediafile_MediaFileFrameLoader_dispose(
+Java_io_github_javernaut_mediafile_FrameLoader_nativeClose(
         JNIEnv *env,
         jclass clazz,
         jlong frameLoaderHandle
