@@ -3,6 +3,9 @@ package io.github.javernaut.mediafile
 import com.google.common.truth.Truth.assertThat
 
 object MediaFileAssertions {
+    const val testVideoFileName = "test_video.mkv"
+    const val testAudioFileName = "test_audio.aac"
+
     fun verifyVideoFile(mediaFile: MediaFile?) {
         assertThat(mediaFile).isNotNull()
 
