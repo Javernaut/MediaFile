@@ -3,8 +3,6 @@ package io.github.javernaut.mediafile.factory
 import android.content.res.AssetFileDescriptor
 import android.net.Uri
 import android.os.ParcelFileDescriptor
-import java.nio.file.Path
-import kotlin.io.path.absolutePathString
 
 sealed class MediaSource {
 
@@ -28,17 +26,9 @@ sealed class MediaSource {
     }
 
     // Expects a file://...
-    class File : MediaSource {
+    class File(file: java.io.File) : MediaSource() {
 
-        private val filePath: String
-
-        constructor(file: java.io.File) {
-            filePath = file.absolutePath
-        }
-
-        constructor(file: Path) {
-            filePath = file.absolutePathString()
-        }
+        private val filePath: String = file.absolutePath
 
         override fun openContext() = nativeOpenUrl("file://$filePath")
     }
