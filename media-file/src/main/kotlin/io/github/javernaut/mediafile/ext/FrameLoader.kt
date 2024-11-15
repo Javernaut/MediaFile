@@ -1,7 +1,8 @@
-package io.github.javernaut.mediafile
+package io.github.javernaut.mediafile.ext
 
 import android.graphics.Bitmap
-import io.github.javernaut.mediafile.FrameLoader.Companion.create
+import io.github.javernaut.mediafile.MediaFile
+import io.github.javernaut.mediafile.ext.FrameLoader.Companion.create
 import io.github.javernaut.mediafile.factory.NativeHandle
 import io.github.javernaut.mediafile.factory.isValid
 

@@ -32,8 +32,7 @@ object MediaFileFactory {
     private external fun nativeSetMinLogLevel(level: Int)
 
     enum class LogLevel {
-        // No logging
-        QUITE,
+        QUITE, // No logging
         FATAL,
         ERROR,
         WARN,
