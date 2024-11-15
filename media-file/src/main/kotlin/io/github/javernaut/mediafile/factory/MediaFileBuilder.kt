@@ -3,6 +3,7 @@ package io.github.javernaut.mediafile.factory
 import androidx.annotation.Keep
 import io.github.javernaut.mediafile.model.AudioStream
 import io.github.javernaut.mediafile.model.BasicStreamInfo
+import io.github.javernaut.mediafile.model.Container
 import io.github.javernaut.mediafile.model.MediaInfo
 import io.github.javernaut.mediafile.model.SubtitleStream
 import io.github.javernaut.mediafile.model.VideoStream
@@ -15,9 +16,7 @@ internal class MediaFileBuilder {
 
     private var error = false
 
-    // TODO encapsulate the container info somehow, potentially with more data (like the protocol)
-    private var fileFormatName: String? = null
-
+    private var container: Container? = null
     private var videoStream: VideoStream? = null
     private var audioStreams = mutableListOf<AudioStream>()
     private var subtitleStream = mutableListOf<SubtitleStream>()
@@ -27,16 +26,14 @@ internal class MediaFileBuilder {
      * metadata reading then null is returned.
      */
     fun create(): MediaInfo? {
-        return if (!error) {
-            MediaInfo(
-                fileFormatName!!,
-                videoStream,
-                audioStreams,
-                subtitleStream
-            )
-        } else {
-            null
-        }
+        if (error) return null
+
+        return MediaInfo(
+            container!!,
+            videoStream,
+            audioStreams,
+            subtitleStream
+        )
     }
 
     /* Used from JNI */
@@ -49,8 +46,8 @@ internal class MediaFileBuilder {
     /* Used from JNI */
     @Keep
     @SuppressWarnings("UnusedPrivateMember")
-    private fun onMediaFileFound(fileFormatName: String) {
-        this.fileFormatName = fileFormatName
+    private fun onMediaFileFound(formatName: String) {
+        container = Container(formatName)
     }
 
     /* Used from JNI */

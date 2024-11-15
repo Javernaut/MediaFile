@@ -14,7 +14,8 @@ object MediaFileAssertions {
 
             assertThat(mediaInfo).isNotNull()
 
-            assertThat(mediaInfo!!.fileFormatName).isEqualTo("Matroska / WebM")
+            val container = mediaInfo!!.container
+            assertThat(container.formatName).isEqualTo("Matroska / WebM")
 
             // Video stream
             assertThat(mediaInfo.videoStream).isNotNull()
