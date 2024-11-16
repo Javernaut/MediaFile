@@ -1,6 +1,5 @@
 package io.github.javernaut.mediafile.factory
 
-import androidx.annotation.Keep
 import io.github.javernaut.mediafile.model.AudioStream
 import io.github.javernaut.mediafile.model.BasicStreamInfo
 import io.github.javernaut.mediafile.model.Container
@@ -37,21 +36,18 @@ internal class MediaFileBuilder {
     }
 
     /* Used from JNI */
-    @Keep
     @SuppressWarnings("UnusedPrivateMember")
     private fun onError() {
         this.error = true
     }
 
     /* Used from JNI */
-    @Keep
     @SuppressWarnings("UnusedPrivateMember")
     private fun onMediaFileFound(formatName: String) {
         container = Container(formatName)
     }
 
     /* Used from JNI */
-    @Keep
     @SuppressWarnings("UnusedPrivateMember")
     private fun onVideoStreamFound(
         basicStreamInfo: BasicStreamInfo,
@@ -72,7 +68,6 @@ internal class MediaFileBuilder {
     }
 
     /* Used from JNI */
-    @Keep
     @SuppressWarnings("UnusedPrivateMember")
     private fun onAudioStreamFound(
         basicStreamInfo: BasicStreamInfo,
@@ -88,7 +83,6 @@ internal class MediaFileBuilder {
     }
 
     /* Used from JNI */
-    @Keep
     @SuppressWarnings("UnusedPrivateMember")
     private fun onSubtitleStreamFound(basicStreamInfo: BasicStreamInfo) {
         subtitleStream.add(
@@ -97,7 +91,6 @@ internal class MediaFileBuilder {
     }
 
     /* Used from JNI */
-    @Keep
     @SuppressWarnings("UnusedPrivateMember")
     private fun createBasicInfo(
         index: Int,

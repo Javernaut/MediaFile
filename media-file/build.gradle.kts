@@ -23,10 +23,11 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
+                "consumer-rules.pro"
             )
         }
     }
@@ -54,11 +55,11 @@ android {
             }
         }
     }
+    // In order to catch the potential minification issues, the instrumentation testing should be done for minified build type
+    testBuildType = "release"
 }
 
 dependencies {
-    implementation(libs.androidx.annotation)
-
     // Core library
     androidTestImplementation(libs.androidx.test.core)
 

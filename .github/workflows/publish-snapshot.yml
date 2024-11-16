@@ -38,11 +38,14 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
 
-      - name: Testing
-        run: ./gradlew :media-file:pixel2api34DebugAndroidTest
+      - name: Building
+        run: ./gradlew :media-file:assembleRelease
 
-      - name: Building the library and pushing the library to Maven Central (SNAPSHOT)
-        run: ./gradlew assembleRelease publishReleasePublicationToSonatypeRepository --max-workers 1
+      - name: Testing
+        run: ./gradlew :media-file:pixel2api34ReleaseAndroidTest
+
+      - name: Publishing the library to Maven Central (SNAPSHOT)
+        run: ./gradlew publishReleasePublicationToSonatypeRepository --max-workers 1
         env:
           SIGNING_KEY_ID: ${{ secrets.SIGNING_KEY_ID }}
           SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}

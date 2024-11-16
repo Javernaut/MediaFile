@@ -1,13 +1,12 @@
 package io.github.javernaut.mediafile.displayable
 
 import android.content.res.Resources
-import androidx.annotation.StringRes
 import io.github.javernaut.mediafile.R
 import io.github.javernaut.mediafile.model.BasicStreamInfo
 
 fun BasicStreamInfo.getDisplayableDisposition(resources: Resources): String? {
     return if (disposition != 0) {
-        io.github.javernaut.mediafile.displayable.DispositionFeature.values().filter {
+        DispositionFeature.entries.filter {
             disposition and it.mask != 0
         }.joinToString(separator = ", ") {
             resources.getString(it.stringIdRes)
@@ -21,7 +20,7 @@ fun BasicStreamInfo.getDisplayableDisposition(resources: Resources): String? {
  * Class that maps a certain bit in a 'disposition' integer to a string res id.
  * Values for masks got from libavformat/avformat.h.
  */
-private enum class DispositionFeature(val mask: Int, @StringRes val stringIdRes: Int) {
+private enum class DispositionFeature(val mask: Int, val stringIdRes: Int) {
     DEFAULT(0x0001, R.string.media_file_disposition_default),
     DUB(0x0002, R.string.media_file_disposition_dub),
     ORIGINAL(0x0004, R.string.media_file_disposition_original),
