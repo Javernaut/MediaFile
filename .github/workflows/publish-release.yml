@@ -37,6 +37,9 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
 
+      - name: Testing
+        run: ./gradlew :media-file:pixel2api34DebugAndroidTest
+
       - name: Building the library and pushing the library to Maven Central
         run: ./gradlew assembleRelease publishReleasePublicationToSonatypeRepository closeAndReleaseSonatypeStagingRepository --max-workers 1
         env:
