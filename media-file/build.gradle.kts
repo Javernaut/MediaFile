@@ -43,6 +43,17 @@ android {
             path = file("src/main/cpp/CMakeLists.txt")
         }
     }
+    testOptions {
+        managedDevices {
+            localDevices {
+                create("pixel2api34") {
+                    device = "Pixel 2"
+                    apiLevel = 34
+                    systemImageSource = "aosp-atd"
+                }
+            }
+        }
+    }
 }
 
 dependencies {
