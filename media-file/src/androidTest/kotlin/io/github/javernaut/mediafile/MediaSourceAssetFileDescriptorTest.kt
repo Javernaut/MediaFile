@@ -2,41 +2,49 @@ package io.github.javernaut.mediafile
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import io.github.javernaut.mediafile.factory.MediaFileFactory
 import io.github.javernaut.mediafile.factory.MediaSource
 import io.github.javernaut.mediafile.factory.MediaType
 import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class MediaSourceAssetFileDescriptorTest {
+class MediaSourceAssetFileDescriptorTest : DefaultMediaSourceTest() {
 
     @Test
     fun testVideoFile() {
-        val context = InstrumentationRegistry.getInstrumentation().context
-
-        val assetFileDescriptor = context.assets.openFd(MediaFileAssertions.testVideoFileName)
-
-        val mediaFile = MediaFileFactory.create(
-            MediaSource.FileDescriptor(assetFileDescriptor, "matroska"),
-            MediaType.VIDEO
+        testAssetFileDescriptor(
+            MediaFileAssertions.testVideoFileName,
+            "matroska",
+            MediaType.VIDEO,
+            MediaFileAssertions::verifyVideoFile
         )
-
-        MediaFileAssertions.verifyVideoFile(mediaFile)
     }
 
     @Test
     fun testAudioFile() {
+        testAssetFileDescriptor(
+            MediaFileAssertions.testAudioFileName,
+            "aac",
+            MediaType.AUDIO,
+            MediaFileAssertions::verifyAudiFile
+        )
+    }
+
+    private fun testAssetFileDescriptor(
+        fileName: String,
+        formatNameHint: String,
+        mediaType: MediaType,
+        verify: (MediaFile?) -> Unit
+    ) {
         val context = InstrumentationRegistry.getInstrumentation().context
 
-        // Actual test
-        val assetFileDescriptor = context.assets.openFd(MediaFileAssertions.testAudioFileName)
+        val assetFileDescriptor = context.assets.openFd(fileName)
 
-        val mediaFile = MediaFileFactory.create(
-            MediaSource.FileDescriptor(assetFileDescriptor, "aac"),
-            MediaType.AUDIO
+        val mediaFile = factory.create(
+            MediaSource.FileDescriptor(assetFileDescriptor, formatNameHint),
+            mediaType
         )
 
-        MediaFileAssertions.verifyAudiFile(mediaFile)
+        verify(mediaFile)
     }
 }

@@ -4,10 +4,8 @@ import android.content.ContentValues
 import android.provider.MediaStore
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import io.github.javernaut.mediafile.factory.MediaFileFactory
 import io.github.javernaut.mediafile.factory.MediaSource
 import io.github.javernaut.mediafile.factory.MediaType
-import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.FileOutputStream
@@ -15,17 +13,11 @@ import java.io.IOException
 
 // TODO Make runnable on Android 28 and lower
 @RunWith(AndroidJUnit4::class)
-class MediaSourceFileDescriptorTest {
-
-    @Before
-    fun setUp() {
-        val context = InstrumentationRegistry.getInstrumentation().context
-        MediaFileFactory.initWith(context)
-    }
+class MediaSourceFileDescriptorTest : DefaultMediaSourceTest() {
 
     @Test
     fun testVideoFile() {
-        testContent(
+        testFileDescriptor(
             MediaFileAssertions.testVideoFileName,
             MediaType.VIDEO,
             MediaFileAssertions::verifyVideoFile
@@ -34,14 +26,18 @@ class MediaSourceFileDescriptorTest {
 
     @Test
     fun testAudioFile() {
-        testContent(
+        testFileDescriptor(
             MediaFileAssertions.testAudioFileName,
             MediaType.AUDIO,
             MediaFileAssertions::verifyAudiFile
         )
     }
 
-    private fun testContent(fileName: String, mediaType: MediaType, verify: (MediaFile?) -> Unit) {
+    private fun testFileDescriptor(
+        fileName: String,
+        mediaType: MediaType,
+        verify: (MediaFile?) -> Unit
+    ) {
         val context = InstrumentationRegistry.getInstrumentation().context
         val resolver = context.contentResolver
 
@@ -64,7 +60,7 @@ class MediaSourceFileDescriptorTest {
             val fd = resolver.openFileDescriptor(fileUri, "r")
                 ?: throw IOException("Failed to open a file descriptor for reading")
 
-            val mediaFile = MediaFileFactory.create(
+            val mediaFile = factory.create(
                 MediaSource.FileDescriptor(fd),
                 mediaType
             )

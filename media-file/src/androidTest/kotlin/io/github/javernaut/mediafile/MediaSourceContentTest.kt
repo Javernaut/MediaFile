@@ -4,10 +4,8 @@ import android.content.ContentValues
 import android.provider.MediaStore
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import io.github.javernaut.mediafile.factory.MediaFileFactory
 import io.github.javernaut.mediafile.factory.MediaSource
 import io.github.javernaut.mediafile.factory.MediaType
-import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.FileOutputStream
@@ -15,13 +13,7 @@ import java.io.IOException
 
 // TODO Make runnable on Android 28 and lower
 @RunWith(AndroidJUnit4::class)
-class MediaSourceContentTest {
-
-    @Before
-    fun setUp() {
-        val context = InstrumentationRegistry.getInstrumentation().context
-        MediaFileFactory.initWith(context)
-    }
+class MediaSourceContentTest : DefaultMediaSourceTest() {
 
     @Test
     fun testVideoFile() {
@@ -61,7 +53,7 @@ class MediaSourceContentTest {
                 }
             } ?: throw IOException("Failed to open output stream")
 
-            val mediaFile = MediaFileFactory.create(
+            val mediaFile = factory.create(
                 MediaSource.Content(fileUri),
                 mediaType
             )

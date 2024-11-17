@@ -2,7 +2,6 @@ package io.github.javernaut.mediafile
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import io.github.javernaut.mediafile.factory.MediaFileFactory
 import io.github.javernaut.mediafile.factory.MediaSource
 import io.github.javernaut.mediafile.factory.MediaType
 import org.junit.Test
@@ -10,7 +9,7 @@ import org.junit.runner.RunWith
 import java.io.File
 
 @RunWith(AndroidJUnit4::class)
-class MediaSourceFileIOTest {
+class MediaSourceFileIOTest : DefaultMediaSourceTest() {
 
     @Test
     fun testVideoFile() {
@@ -40,7 +39,7 @@ class MediaSourceFileIOTest {
             val srcInputStream = context.assets.open(fileName)
             srcInputStream.copyTo(dstFile.outputStream())
 
-            val mediaFile = MediaFileFactory.create(
+            val mediaFile = factory.create(
                 MediaSource.File(dstFile),
                 mediaType
             )
