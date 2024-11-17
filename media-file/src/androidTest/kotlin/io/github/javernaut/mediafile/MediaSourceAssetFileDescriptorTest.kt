@@ -11,14 +11,11 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class MediaSourceAssetFileDescriptorTest {
 
-    private val testVideoFileName = "test_video.mkv"
-    private val testAudioFileName = "test_audio.aac"
-
     @Test
     fun testVideoFile() {
         val context = InstrumentationRegistry.getInstrumentation().context
 
-        val assetFileDescriptor = context.assets.openFd(testVideoFileName)
+        val assetFileDescriptor = context.assets.openFd(MediaFileAssertions.testVideoFileName)
 
         val mediaFile = MediaFileFactory.create(
             MediaSource.FileDescriptor(assetFileDescriptor, "matroska"),
@@ -33,7 +30,7 @@ class MediaSourceAssetFileDescriptorTest {
         val context = InstrumentationRegistry.getInstrumentation().context
 
         // Actual test
-        val assetFileDescriptor = context.assets.openFd(testAudioFileName)
+        val assetFileDescriptor = context.assets.openFd(MediaFileAssertions.testAudioFileName)
 
         val mediaFile = MediaFileFactory.create(
             MediaSource.FileDescriptor(assetFileDescriptor, "aac"),

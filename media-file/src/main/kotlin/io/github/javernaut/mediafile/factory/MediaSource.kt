@@ -44,7 +44,7 @@ sealed class MediaSource {
 
         constructor(
             assetFileDescriptor: AssetFileDescriptor,
-            formatNameHint: String? = null,
+            formatNameHint: String,
         ) : this(assetFileDescriptor.parcelFileDescriptor) {
             this.skipInitialBytes = assetFileDescriptor.startOffset
             this.formatNameHint = formatNameHint
