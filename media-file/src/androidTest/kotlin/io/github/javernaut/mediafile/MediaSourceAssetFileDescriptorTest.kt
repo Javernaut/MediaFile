@@ -2,8 +2,6 @@ package io.github.javernaut.mediafile
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import io.github.javernaut.mediafile.factory.MediaSource
-import io.github.javernaut.mediafile.factory.MediaType
 import org.junit.Test
 import org.junit.runner.RunWith
 

@@ -1,4 +1,4 @@
-package io.github.javernaut.mediafile.factory
+package io.github.javernaut.mediafile
 
 // TODO Consider a value class instead and a type parameter
 internal typealias NativeHandle = Long

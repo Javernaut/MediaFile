@@ -1,4 +1,4 @@
-package io.github.javernaut.mediafile.factory
+package io.github.javernaut.mediafile
 
 import io.github.javernaut.mediafile.model.AudioStream
 import io.github.javernaut.mediafile.model.BasicStreamInfo

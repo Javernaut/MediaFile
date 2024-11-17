@@ -1,8 +1,5 @@
 package io.github.javernaut.mediafile
 
-import io.github.javernaut.mediafile.factory.MediaFileBuilder
-import io.github.javernaut.mediafile.factory.MediaType
-import io.github.javernaut.mediafile.factory.NativeHandle
 import io.github.javernaut.mediafile.model.MediaInfo
 
 // Owns AVFormatContext pointer

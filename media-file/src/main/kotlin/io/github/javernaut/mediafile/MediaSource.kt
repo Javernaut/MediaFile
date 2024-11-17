@@ -1,4 +1,4 @@
-package io.github.javernaut.mediafile.factory
+package io.github.javernaut.mediafile
 
 import android.content.res.AssetFileDescriptor
 import android.net.Uri

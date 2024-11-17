@@ -7,9 +7,9 @@
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_io_github_javernaut_mediafile_factory_MediaFileFactory_nativeInitWith(
+Java_io_github_javernaut_mediafile_MediaFileFactory_nativeInitWith(
         JNIEnv *env,
-        jobject thiz,
+        jclass clazz,
         jobject context
 ) {
     MediaFile::setAndroidContext(
@@ -19,9 +19,9 @@ Java_io_github_javernaut_mediafile_factory_MediaFileFactory_nativeInitWith(
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_io_github_javernaut_mediafile_factory_MediaFileFactory_nativeSetMinLogLevel(
+Java_io_github_javernaut_mediafile_MediaFileFactory_nativeSetMinLogLevel(
         JNIEnv *env,
-        jobject thiz,
+        jclass clazz,
         jint level
 ) {
     MediaFile::Logger::setMinLevel(static_cast<MediaFile::Logger::Level>(level));

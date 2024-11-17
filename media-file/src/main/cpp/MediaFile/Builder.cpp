@@ -12,7 +12,6 @@ extern "C" {
 #include <libavutil/channel_layout.h>
 }
 
-// TODO Consider MediaFileUtility -> MediaFileFacade, and moving the reflection related code to new MediaFileBuilderUtility
 static struct fields {
     struct {
         jclass clazz;
@@ -69,7 +68,7 @@ static int utils_fields_init(JavaVM *vm) {
     // Actual work
 
     GET_CLASS(fields.MediaFileBuilder.clazz,
-              "io/github/javernaut/mediafile/factory/MediaFileBuilder", true);
+              "io/github/javernaut/mediafile/MediaFileBuilder", true);
 
     GET_ID(GetMethodID,
            fields.MediaFileBuilder.onErrorID,
