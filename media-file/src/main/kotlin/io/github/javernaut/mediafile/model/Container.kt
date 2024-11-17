@@ -1,5 +1,5 @@
 package io.github.javernaut.mediafile.model
 
-class Container(
+data class Container(
     val formatName: String,
 )

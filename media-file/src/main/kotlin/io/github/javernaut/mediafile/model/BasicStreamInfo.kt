@@ -1,6 +1,6 @@
 package io.github.javernaut.mediafile.model
 
-class BasicStreamInfo(
+data class BasicStreamInfo(
     val index: Int,
     val title: String?,
     val codecName: String,

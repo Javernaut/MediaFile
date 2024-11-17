@@ -3,7 +3,7 @@ package io.github.javernaut.mediafile.model
 /**
  * Represents metadata of a video stream in a video file.
  */
-class VideoStream(
+data class VideoStream(
     override val basicInfo: BasicStreamInfo,
     val bitRate: BitRate,
 

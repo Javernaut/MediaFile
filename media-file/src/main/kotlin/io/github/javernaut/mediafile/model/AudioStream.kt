@@ -1,6 +1,6 @@
 package io.github.javernaut.mediafile.model
 
-class AudioStream(
+data class AudioStream(
     override val basicInfo: BasicStreamInfo,
     val bitRate: BitRate,
     val sampleFormat: String?,
