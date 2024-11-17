@@ -5,15 +5,18 @@
 [![Android Weekly #378](https://androidweekly.net/issues/issue-378/badge)](https://androidweekly.net/issues/issue-378)
 [![Android Weekly #396](https://androidweekly.net/issues/issue-396/badge)](https://androidweekly.net/issues/issue-396)
 
+## Overview
+
 The library reads basic information about video and audio files.
 
 For **video** streams:
+
 * Video codec name
 * Bit rate
-* Frame size
-* 4 equidistant frames can be read (incubating feature)
+* Frame rate and size
 
 For **audio** streams:
+
 * Audio codec name
 * Bit rate
 * Number of channels
@@ -22,21 +25,55 @@ For **audio** streams:
 
 For **subtitle** streams: title and language from stream’s metadata.
 
+An incubating feature allows reading N equidistant frames from a video stream.
+
 Supported ABIs are: **armeabi-v7a**, **arm64-v8a**, **x86** and **x86_64**.
-
-The main purpose is to show how to use the output of [ffmpeg-android-maker](https://github.com/Javernaut/ffmpeg-android-maker).
-
-Extensive description can be found in [this article](https://proandroiddev.com/a-story-about-ffmpeg-in-android-part-ii-integration-55fb217251f0), though the article was written at the time this library wasn't extracted as a separate repository.
 
 ## How it works
 
-The codebase has a native part that glues FFmpeg libs to JVM part.  
+Under the hood this library uses [FFmpeg](https://ffmpeg.org/). Android-specific binaries of FFmpeg
+are produced with [ffmpeg-android-maker](https://github.com/Javernaut/ffmpeg-android-maker).
 
-FFmpeg accepts 2 types of input: File paths and File Descriptors. **File paths** are better and allow the FFmpeg to use all the functionality it has. **File Descriptors** can be passed to FFmpeg via pipe protocol, but it has certain [problems](https://ffmpeg.org/ffmpeg-protocols.html#pipe) like inability to seek backward. That is why the number of frames loaded is limited to 4 only. Though the File protocol doesn't have this problem.
+Extensive description can be found
+in [this article](https://proandroiddev.com/a-story-about-ffmpeg-in-android-part-ii-integration-55fb217251f0),
+though the article was written at the time this library wasn't extracted as a separate repository.
 
-Library tries to recreate a raw file path from a Uri and pass it to FFmpeg. If it doesn't succeed, it falls back to File Descriptor way.
+FFmpeg's C API is accessed directly. Native part is connected to JVM part via JNI.
 
-## Using
+### Entry point
+
+`MediaFileFactory` class represents the entry point for `MediaFile` instances retrieval.
+
+### Supported input formats
+
+FFmpeg's supports various types of input. MediaFile uses only a subset, that covers local content
+accessing:
+
+#### MediaSource.File()
+
+Despite the restrictions Android OS imposes on raw file paths usage, they are still valid if you
+want to use the files in your app's directories.
+
+Backed by _file_ protocol.
+
+#### MediaSource.FileDescriptor()
+
+A `ParcelFileDescriptor` and `AssetFileDescriptor` are covered with this MediaSource type.
+
+Backed by _fd_ protocol.
+
+#### MediaSource.Content()
+
+Regular `Uri`s with `content://` scheme can also be read by FFmpeg directly.
+
+Backed by _android_content_ protocol.
+
+### Resource management
+
+`MediaFile` and `FrameLoader` implement `AutoClosable`, so they can be used in try-with-resources (
+Java) or with use() function (Kotlin).
+
+## Usage
 
 The library is available via Maven Central, so you are able to use it as a dependency:
 
@@ -53,16 +90,23 @@ repositories {
 
 ## Build on your own
 
-In order to compile the library yourself, you have to get [ffmpeg-android-maker](https://github.com/Javernaut/ffmpeg-android-maker) source code and compile it. It is already added as a submodule. So the first thing to do is to load it:
+It is possible to have a different set of modules for the underlying FFmpeg's binaries. For that you
+need to rebuild them yourself. In order to do that you have to
+get [ffmpeg-android-maker](https://github.com/Javernaut/ffmpeg-android-maker) source code and
+compile it. It is already added as a submodule. So the first thing to do is to load it:
 
-`git submodule update --init`  
+`git submodule update --init`
 
-Then you need to setup and execute the ffmpeg-android-maker's script. The command used to generate the artifacts for Maven Central looks like this:
+Then you need to setup and execute the ffmpeg-android-maker's script. The command used to generate
+the artifacts for Maven Central looks like this:
 
 `./ffmpeg-android-maker.sh -dav1d`
 
-More details about how to setup your environment for FFmpeg compilation can be found in [ffmpeg-android-maker](https://github.com/Javernaut/ffmpeg-android-maker) repository.
+More details about how to setup your environment for FFmpeg compilation can be found
+in [ffmpeg-android-maker](https://github.com/Javernaut/ffmpeg-android-maker) repository.
 
 ## License
 
-MediaFile library's source code is available under the MIT license. See the [LICENSE.txt](https://github.com/Javernaut/MediaFile/blob/main/LICENSE.txt) file for more details.
+MediaFile library's source code is available under the MIT license. See
+the [LICENSE.txt](https://github.com/Javernaut/MediaFile/blob/main/LICENSE.txt) file for more
+details.
