@@ -13,7 +13,6 @@ class MediaSourceFileIOTest : DefaultMediaSourceTest() {
     fun testVideoFile() {
         testFile(
             MediaFileAssertions.testVideoFileName,
-            MediaType.VIDEO,
             MediaFileAssertions::verifyVideoFile
         )
     }
@@ -22,12 +21,11 @@ class MediaSourceFileIOTest : DefaultMediaSourceTest() {
     fun testAudioFile() {
         testFile(
             MediaFileAssertions.testAudioFileName,
-            MediaType.AUDIO,
             MediaFileAssertions::verifyAudiFile
         )
     }
 
-    private fun testFile(fileName: String, mediaType: MediaType, verify: (MediaFile?) -> Unit) {
+    private fun testFile(fileName: String, verify: (MediaFile?) -> Unit) {
         val context = InstrumentationRegistry.getInstrumentation().context
 
         val internalDir = context.filesDir
@@ -38,8 +36,7 @@ class MediaSourceFileIOTest : DefaultMediaSourceTest() {
             srcInputStream.copyTo(dstFile.outputStream())
 
             val mediaFile = factory.create(
-                MediaSource.File(dstFile),
-                mediaType
+                MediaSource.File(dstFile)
             )
 
             verify(mediaFile)

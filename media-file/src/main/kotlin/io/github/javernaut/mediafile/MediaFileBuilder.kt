@@ -8,8 +8,8 @@ import io.github.javernaut.mediafile.model.SubtitleStream
 import io.github.javernaut.mediafile.model.VideoStream
 
 /**
- * Class that aggregates a creation process of a [MediaInfo] object. Certain private methods are
- * called from JNI layer.
+ * Class that aggregates the creation process of a [MediaInfo] object. Certain private methods are
+ * called from the JNI layer.
  */
 internal class MediaFileBuilder {
 

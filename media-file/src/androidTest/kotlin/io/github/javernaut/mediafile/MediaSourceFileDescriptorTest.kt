@@ -17,7 +17,6 @@ class MediaSourceFileDescriptorTest : DefaultMediaSourceTest() {
     fun testVideoFile() {
         testFileDescriptor(
             MediaFileAssertions.testVideoFileName,
-            MediaType.VIDEO,
             MediaFileAssertions::verifyVideoFile
         )
     }
@@ -26,14 +25,12 @@ class MediaSourceFileDescriptorTest : DefaultMediaSourceTest() {
     fun testAudioFile() {
         testFileDescriptor(
             MediaFileAssertions.testAudioFileName,
-            MediaType.AUDIO,
             MediaFileAssertions::verifyAudiFile
         )
     }
 
     private fun testFileDescriptor(
         fileName: String,
-        mediaType: MediaType,
         verify: (MediaFile?) -> Unit
     ) {
         val context = InstrumentationRegistry.getInstrumentation().context
@@ -59,8 +56,7 @@ class MediaSourceFileDescriptorTest : DefaultMediaSourceTest() {
                 ?: throw IOException("Failed to open a file descriptor for reading")
 
             val mediaFile = factory.create(
-                MediaSource.FileDescriptor(fd),
-                mediaType
+                MediaSource.FileDescriptor(fd)
             )
 
             verify(mediaFile)

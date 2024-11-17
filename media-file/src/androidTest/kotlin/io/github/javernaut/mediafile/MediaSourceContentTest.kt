@@ -17,7 +17,6 @@ class MediaSourceContentTest : DefaultMediaSourceTest() {
     fun testVideoFile() {
         testContent(
             MediaFileAssertions.testVideoFileName,
-            MediaType.VIDEO,
             MediaFileAssertions::verifyVideoFile
         )
     }
@@ -26,12 +25,11 @@ class MediaSourceContentTest : DefaultMediaSourceTest() {
     fun testAudioFile() {
         testContent(
             MediaFileAssertions.testAudioFileName,
-            MediaType.AUDIO,
             MediaFileAssertions::verifyAudiFile
         )
     }
 
-    private fun testContent(fileName: String, mediaType: MediaType, verify: (MediaFile?) -> Unit) {
+    private fun testContent(fileName: String, verify: (MediaFile?) -> Unit) {
         val context = InstrumentationRegistry.getInstrumentation().context
         val resolver = context.contentResolver
 
@@ -53,7 +51,6 @@ class MediaSourceContentTest : DefaultMediaSourceTest() {
 
             val mediaFile = factory.create(
                 MediaSource.Content(fileUri),
-                mediaType
             )
 
             verify(mediaFile)

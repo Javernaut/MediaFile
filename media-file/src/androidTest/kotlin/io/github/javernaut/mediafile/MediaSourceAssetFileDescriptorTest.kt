@@ -13,7 +13,6 @@ class MediaSourceAssetFileDescriptorTest : DefaultMediaSourceTest() {
         testAssetFileDescriptor(
             MediaFileAssertions.testVideoFileName,
             "matroska",
-            MediaType.VIDEO,
             MediaFileAssertions::verifyVideoFile
         )
     }
@@ -23,7 +22,6 @@ class MediaSourceAssetFileDescriptorTest : DefaultMediaSourceTest() {
         testAssetFileDescriptor(
             MediaFileAssertions.testAudioFileName,
             "aac",
-            MediaType.AUDIO,
             MediaFileAssertions::verifyAudiFile
         )
     }
@@ -31,7 +29,6 @@ class MediaSourceAssetFileDescriptorTest : DefaultMediaSourceTest() {
     private fun testAssetFileDescriptor(
         fileName: String,
         formatNameHint: String,
-        mediaType: MediaType,
         verify: (MediaFile?) -> Unit
     ) {
         val context = InstrumentationRegistry.getInstrumentation().context
@@ -39,8 +36,7 @@ class MediaSourceAssetFileDescriptorTest : DefaultMediaSourceTest() {
         val assetFileDescriptor = context.assets.openFd(fileName)
 
         val mediaFile = factory.create(
-            MediaSource.FileDescriptor(assetFileDescriptor, formatNameHint),
-            mediaType
+            MediaSource.FileDescriptor(assetFileDescriptor, formatNameHint)
         )
 
         verify(mediaFile)
