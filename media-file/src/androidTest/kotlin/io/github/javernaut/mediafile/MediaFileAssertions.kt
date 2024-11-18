@@ -1,6 +1,8 @@
 package io.github.javernaut.mediafile
 
 import com.google.common.truth.Truth.assertThat
+import io.github.javernaut.mediafile.model.BitRate
+import io.github.javernaut.mediafile.model.SampleRate
 
 object MediaFileAssertions {
     const val testVideoFileName = "test_video.mkv"
@@ -40,9 +42,9 @@ object MediaFileAssertions {
             assertThat(audioStream.basicInfo.codecName).isEqualTo("ATSC A/52A (AC-3)")
             assertThat(audioStream.basicInfo.title).isNull()
             assertThat(audioStream.basicInfo.language).isNull()
-            assertThat(audioStream.bitRate).isEqualTo(320000)
+            assertThat(audioStream.bitRate).isEqualTo(BitRate(320000))
             assertThat(audioStream.sampleFormat).isEqualTo("fltp")
-            assertThat(audioStream.sampleRate).isEqualTo(48000)
+            assertThat(audioStream.sampleRate).isEqualTo(SampleRate(48000))
             assertThat(audioStream.channels).isEqualTo(6)
             assertThat(audioStream.channelLayout).isEqualTo("5.1(side)")
             assertThat(audioStream.basicInfo.disposition).isEqualTo(1) // Aka 'Default'
@@ -81,9 +83,9 @@ object MediaFileAssertions {
             assertThat(audioStream.basicInfo.codecName).isEqualTo("AAC (Advanced Audio Coding)")
             assertThat(audioStream.basicInfo.title).isNull()
             assertThat(audioStream.basicInfo.language).isNull()
-            assertThat(audioStream.bitRate).isEqualTo(98625)
+            assertThat(audioStream.bitRate).isEqualTo(BitRate(98625))
             assertThat(audioStream.sampleFormat).isEqualTo("fltp")
-            assertThat(audioStream.sampleRate).isEqualTo(48000)
+            assertThat(audioStream.sampleRate).isEqualTo(SampleRate(48000))
             assertThat(audioStream.channels).isEqualTo(1)
             assertThat(audioStream.channelLayout).isEqualTo("mono")
             assertThat(audioStream.basicInfo.disposition).isEqualTo(0)

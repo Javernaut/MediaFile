@@ -3,8 +3,11 @@ package io.github.javernaut.mediafile
 import android.util.Size
 import io.github.javernaut.mediafile.model.AudioStream
 import io.github.javernaut.mediafile.model.BasicStreamInfo
+import io.github.javernaut.mediafile.model.BitRate
 import io.github.javernaut.mediafile.model.Container
+import io.github.javernaut.mediafile.model.FrameRate
 import io.github.javernaut.mediafile.model.MediaInfo
+import io.github.javernaut.mediafile.model.SampleRate
 import io.github.javernaut.mediafile.model.SubtitleStream
 import io.github.javernaut.mediafile.model.VideoStream
 
@@ -60,8 +63,8 @@ internal class MediaInfoBuilder {
         if (videoStream == null) {
             videoStream = VideoStream(
                 basicStreamInfo,
-                bitRate,
-                frameRate,
+                BitRate(bitRate),
+                FrameRate(frameRate),
                 Size(frameWidth, frameHeight)
             )
         }
@@ -78,7 +81,14 @@ internal class MediaInfoBuilder {
         channelLayout: String?
     ) {
         audioStreams.add(
-            AudioStream(basicStreamInfo, bitRate, sampleFormat, sampleRate, channels, channelLayout)
+            AudioStream(
+                basicStreamInfo,
+                BitRate(bitRate),
+                sampleFormat,
+                SampleRate(sampleRate),
+                channels,
+                channelLayout
+            )
         )
     }
 

@@ -8,10 +8,10 @@ import kotlin.math.roundToInt
 
 fun BitRate.toDisplayable(resources: Resources): String? {
     return when {
-        this <= 0 -> null
-        this < 1000 -> format(this.toFloat(), R.string.media_file_bitrate_bps, resources)
+        value <= 0 -> null
+        value < 1000 -> format(value.toFloat(), R.string.media_file_bitrate_bps, resources)
         else -> {
-            val kBitRate = this / 1000f
+            val kBitRate = value / 1000f
             if (kBitRate < 1000) {
                 format(kBitRate, R.string.media_file_bitrate_kbps, resources)
             } else {

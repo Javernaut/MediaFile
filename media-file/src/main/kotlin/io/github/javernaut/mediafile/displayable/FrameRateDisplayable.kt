@@ -8,10 +8,10 @@ import kotlin.math.abs
 import kotlin.math.max
 
 fun FrameRate.toDisplayable(resources: Resources): String? {
-    return if (this.equalsDelta(0.0)) {
+    return if (value.equalsDelta(0.0)) {
         null
     } else {
-        format(this, resources)
+        format(value, resources)
     }
 }
 

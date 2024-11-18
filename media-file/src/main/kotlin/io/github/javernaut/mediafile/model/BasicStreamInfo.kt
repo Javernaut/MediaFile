@@ -37,4 +37,5 @@ data class BasicStreamInfo(
     val disposition: Int
 )
 
-typealias BitRate = Long
+@JvmInline
+value class BitRate(val value: Long)
