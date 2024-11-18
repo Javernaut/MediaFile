@@ -18,16 +18,14 @@ Java_io_github_javernaut_mediafile_MediaFile_nativeClose(
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_io_github_javernaut_mediafile_MediaFile_nativeReadMetaInfo(
+Java_io_github_javernaut_mediafile_MediaFile_nativeReadMetaData(
         JNIEnv *env,
         jobject thiz,
         jlong contextHandle,
-        jobject jBuilder,
-        jint mediaStreamsMask
+        jobject jBuilder
 ) {
-    MediaFile::Builder::readMetaInfo(
+    MediaFile::Builder::readMetaData(
             Reinterpret::fromHandle<MediaFile::Context>(contextHandle),
-            jBuilder,
-            mediaStreamsMask
+            jBuilder
     );
 }

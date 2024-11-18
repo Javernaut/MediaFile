@@ -10,10 +10,9 @@
 namespace MediaFile {
     class Builder {
     public:
-        static void readMetaInfo(
+        static void readMetaData(
                 MediaFile::Context *mediaFileContext,
-                jobject jBuilder,
-                jint mediaStreamsMask
+                jobject jBuilder
         );
 
         static void init(JavaVM *vm);

@@ -12,7 +12,7 @@ import io.github.javernaut.mediafile.isValid
  * Subject to change in future releases.
  */
 class FrameLoader internal constructor(
-    private val nativeHandle: NativeHandle // MediaFileFrameLoader
+    private val nativeHandle: NativeHandle // MediaFile::FrameLoader
 ) : AutoCloseable {
 
     private var closed = false
@@ -33,19 +33,19 @@ class FrameLoader internal constructor(
     companion object {
 
         @JvmStatic
-        private external fun nativeClose(frameLoaderHandle: NativeHandle) // MediaFileFrameLoader
+        private external fun nativeClose(frameLoaderHandle: NativeHandle) // MediaFile::FrameLoader
 
         @JvmStatic
         private external fun nativeLoadFrame(
-            frameLoaderHandle: NativeHandle, // MediaFileFrameLoader
+            frameLoaderHandle: NativeHandle, // MediaFile::FrameLoader
             bitmap: Bitmap
         ): Boolean
 
         @JvmStatic
         private external fun nativeCreateFrameLoader(
-            contextHandle: NativeHandle, // MediaFileContext
+            contextHandle: NativeHandle, // MediaFile::Context
             totalFramesToRead: Int
-        ): NativeHandle // MediaFileFrameLoader
+        ): NativeHandle // MediaFile::FrameLoader
 
         internal fun create(
             context: MediaFile,

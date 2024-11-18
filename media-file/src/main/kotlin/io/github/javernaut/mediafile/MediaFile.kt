@@ -1,17 +1,17 @@
 package io.github.javernaut.mediafile
 
 import io.github.javernaut.mediafile.ext.FrameLoader
-import io.github.javernaut.mediafile.model.MediaInfo
+import io.github.javernaut.mediafile.model.MetaData
 
 /**
  * Represents an opened media resource. An instance can be obtained from [MediaFileFactory] by supplying a [MediaSource].
  *
- * A MediaFile can provide a [MediaInfo] and a [FrameLoader] instances.
+ * A MediaFile can provide a [MetaData] and a [FrameLoader] instances.
  *
  * The AutoClosable interface simplifies and denotes the importance of the instance disposal, as internally a pointer to an AVFormatContext is stored.
  */
 class MediaFile internal constructor(
-    private val nativeHandle: NativeHandle // MediaFileContext
+    private val nativeHandle: NativeHandle // MediaFile::Context
 ) : AutoCloseable {
 
     private var closed = false
@@ -19,15 +19,15 @@ class MediaFile internal constructor(
     private val subResources = mutableListOf<AutoCloseable>()
 
     /**
-     * Reads the meta info about the media resource. Returns null on IO error or if the MediaFile is closed.
-     * The [MediaType] parameter controls which types of streams should be read.
+     * Reads the meta info of the media resource. Returns null on IO error or if the MediaFile is closed.
+     * Regardless of the types of the media resource, all the available audio, video and subtitle streams are read.
      */
     @Synchronized
-    fun readMetaInfo(mediaType: MediaType): MediaInfo? {
+    fun readMetaData(): MetaData? {
         if (closed) return null
 
         val builder = MediaFileBuilder()
-        nativeReadMetaInfo(nativeHandle, builder, mediaType.mediaStreamsMask)
+        nativeReadMetaData(nativeHandle, builder)
         return builder.create()
     }
 
@@ -58,11 +58,10 @@ class MediaFile internal constructor(
             ?.also { register(it) }
     }
 
-    private external fun nativeClose(nativeHandle: NativeHandle) // MediaFileContext
+    private external fun nativeClose(nativeHandle: NativeHandle) // MediaFile::Context
 
-    private external fun nativeReadMetaInfo(
-        nativeHandle: NativeHandle, // MediaFileContext
-        builder: MediaFileBuilder,
-        mediaStreamsMask: Int
+    private external fun nativeReadMetaData(
+        nativeHandle: NativeHandle, // MediaFile::Context
+        builder: MediaFileBuilder
     )
 }

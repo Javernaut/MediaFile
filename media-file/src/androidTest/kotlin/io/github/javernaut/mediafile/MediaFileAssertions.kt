@@ -10,7 +10,7 @@ object MediaFileAssertions {
         assertThat(mediaFile).isNotNull()
 
         mediaFile.use {
-            val mediaInfo = mediaFile!!.readMetaInfo(MediaType.VIDEO)
+            val mediaInfo = mediaFile!!.readMetaData()
 
             assertThat(mediaInfo).isNotNull()
 
@@ -65,7 +65,7 @@ object MediaFileAssertions {
         assertThat(mediaFile).isNotNull()
 
         mediaFile.use {
-            val mediaInfo = mediaFile!!.readMetaInfo(MediaType.AUDIO)
+            val mediaInfo = mediaFile!!.readMetaData()
 
             assertThat(mediaInfo).isNotNull()
 

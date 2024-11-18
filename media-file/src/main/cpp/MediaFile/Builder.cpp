@@ -257,10 +257,6 @@ static void onSubtitleStreamFound(jobject jMediaFileBuilder,
                                     jBasicStreamInfo);
 }
 
-static int STREAM_VIDEO = 1;
-static int STREAM_AUDIO = 1 << 1;
-static int STREAM_SUBTITLE = 1 << 2;
-
 namespace MediaFile {
     void Builder::init(JavaVM *vm) {
         utils_fields_init(vm);
@@ -270,38 +266,31 @@ namespace MediaFile {
         utils_fields_free();
     }
 
-    void Builder::readMetaInfo(
+    void Builder::readMetaData(
             MediaFile::Context *mediaFileContext,
-            jobject jMediaFileBuilder,
-            jint mediaStreamsMask
+            jobject jBuilder
     ) {
         auto avFormatContext = mediaFileContext->getAvFormatContext();
 
         if (avformat_find_stream_info(avFormatContext, nullptr) < 0) {
-            onError(jMediaFileBuilder);
+            onError(jBuilder);
             return;
         };
 
-        onMediaFileFound(jMediaFileBuilder, avFormatContext);
+        onMediaFileFound(jBuilder, avFormatContext);
 
         for (int pos = 0; pos < avFormatContext->nb_streams; pos++) {
             AVCodecParameters *parameters = avFormatContext->streams[pos]->codecpar;
             AVMediaType type = parameters->codec_type;
             switch (type) {
                 case AVMEDIA_TYPE_VIDEO:
-                    if (mediaStreamsMask & STREAM_VIDEO) {
-                        onVideoStreamFound(jMediaFileBuilder, avFormatContext, pos);
-                    }
+                    onVideoStreamFound(jBuilder, avFormatContext, pos);
                     break;
                 case AVMEDIA_TYPE_AUDIO:
-                    if (mediaStreamsMask & STREAM_AUDIO) {
-                        onAudioStreamFound(jMediaFileBuilder, avFormatContext, pos);
-                    }
+                    onAudioStreamFound(jBuilder, avFormatContext, pos);
                     break;
                 case AVMEDIA_TYPE_SUBTITLE:
-                    if (mediaStreamsMask & STREAM_SUBTITLE) {
-                        onSubtitleStreamFound(jMediaFileBuilder, avFormatContext, pos);
-                    }
+                    onSubtitleStreamFound(jBuilder, avFormatContext, pos);
                     break;
                 default:
                     break;
