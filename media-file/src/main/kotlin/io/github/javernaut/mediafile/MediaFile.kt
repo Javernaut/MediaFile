@@ -1,12 +1,12 @@
 package io.github.javernaut.mediafile
 
 import io.github.javernaut.mediafile.ext.FrameLoader
-import io.github.javernaut.mediafile.model.MetaData
+import io.github.javernaut.mediafile.model.MediaInfo
 
 /**
  * Represents an opened media resource. An instance can be obtained from [MediaFileFactory] by supplying a [MediaSource].
  *
- * A MediaFile can provide a [MetaData] and a [FrameLoader] instances.
+ * A MediaFile can provide a [MediaInfo] and a [FrameLoader] instances.
  *
  * The AutoClosable interface simplifies and denotes the importance of the instance disposal, as internally a pointer to an AVFormatContext is stored.
  */
@@ -23,11 +23,11 @@ class MediaFile internal constructor(
      * Regardless of the types of the media resource, all the available audio, video and subtitle streams are read.
      */
     @Synchronized
-    fun readMetaData(): MetaData? {
+    fun readMediaInfo(): MediaInfo? {
         if (closed) return null
 
-        val builder = MediaFileBuilder()
-        nativeReadMetaData(nativeHandle, builder)
+        val builder = MediaInfoBuilder()
+        nativeReadMediaInfo(nativeHandle, builder)
         return builder.create()
     }
 
@@ -60,8 +60,8 @@ class MediaFile internal constructor(
 
     private external fun nativeClose(nativeHandle: NativeHandle) // MediaFile::Context
 
-    private external fun nativeReadMetaData(
+    private external fun nativeReadMediaInfo(
         nativeHandle: NativeHandle, // MediaFile::Context
-        builder: MediaFileBuilder
+        builder: MediaInfoBuilder
     )
 }

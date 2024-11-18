@@ -21,7 +21,7 @@ static struct fields {
         jmethodID onSubtitleStreamFoundID;
         jmethodID onErrorID;
         jmethodID createBasicInfoID;
-    } MediaFileBuilder;
+    } MediaInfoBuilder;
 } fields;
 
 static JavaVM *javaVM;
@@ -67,39 +67,39 @@ static int utils_fields_init(JavaVM *vm) {
 
     // Actual work
 
-    GET_CLASS(fields.MediaFileBuilder.clazz,
-              "io/github/javernaut/mediafile/MediaFileBuilder", true);
+    GET_CLASS(fields.MediaInfoBuilder.clazz,
+              "io/github/javernaut/mediafile/MediaInfoBuilder", true);
 
     GET_ID(GetMethodID,
-           fields.MediaFileBuilder.onErrorID,
-           fields.MediaFileBuilder.clazz,
+           fields.MediaInfoBuilder.onErrorID,
+           fields.MediaInfoBuilder.clazz,
            "onError", "()V");
 
     GET_ID(GetMethodID,
-           fields.MediaFileBuilder.createBasicInfoID,
-           fields.MediaFileBuilder.clazz,
+           fields.MediaInfoBuilder.createBasicInfoID,
+           fields.MediaInfoBuilder.clazz,
            "createBasicInfo",
            "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)Lio/github/javernaut/mediafile/model/BasicStreamInfo;");
 
     GET_ID(GetMethodID,
-           fields.MediaFileBuilder.onMediaFileFoundID,
-           fields.MediaFileBuilder.clazz,
+           fields.MediaInfoBuilder.onMediaFileFoundID,
+           fields.MediaInfoBuilder.clazz,
            "onMediaFileFound", "(Ljava/lang/String;)V");
 
     GET_ID(GetMethodID,
-           fields.MediaFileBuilder.onVideoStreamFoundID,
-           fields.MediaFileBuilder.clazz,
+           fields.MediaInfoBuilder.onVideoStreamFoundID,
+           fields.MediaInfoBuilder.clazz,
            "onVideoStreamFound", "(Lio/github/javernaut/mediafile/model/BasicStreamInfo;JDII)V");
 
     GET_ID(GetMethodID,
-           fields.MediaFileBuilder.onAudioStreamFoundID,
-           fields.MediaFileBuilder.clazz,
+           fields.MediaInfoBuilder.onAudioStreamFoundID,
+           fields.MediaInfoBuilder.clazz,
            "onAudioStreamFound",
            "(Lio/github/javernaut/mediafile/model/BasicStreamInfo;JLjava/lang/String;IILjava/lang/String;)V");
 
     GET_ID(GetMethodID,
-           fields.MediaFileBuilder.onSubtitleStreamFoundID,
-           fields.MediaFileBuilder.clazz,
+           fields.MediaInfoBuilder.onSubtitleStreamFoundID,
+           fields.MediaInfoBuilder.clazz,
            "onSubtitleStreamFound", "(Lio/github/javernaut/mediafile/model/BasicStreamInfo;)V");
 
     return 0;
@@ -111,7 +111,7 @@ static void utils_fields_free() {
         return;
     }
 
-    env->DeleteGlobalRef(fields.MediaFileBuilder.clazz);
+    env->DeleteGlobalRef(fields.MediaInfoBuilder.clazz);
 
     javaVM = nullptr;
 }
@@ -167,7 +167,7 @@ static jobject createBasicStreamInfo(jobject jMediaFileBuilder,
     jstring jCodecName = utils_get_env()->NewStringUTF(codecDescriptor->long_name);
 
     return utils_call_instance_method_result(jMediaFileBuilder,
-                                             fields.MediaFileBuilder.createBasicInfoID,
+                                             fields.MediaInfoBuilder.createBasicInfoID,
                                              index,
                                              get_title(stream->metadata),
                                              jCodecName,
@@ -177,7 +177,7 @@ static jobject createBasicStreamInfo(jobject jMediaFileBuilder,
 
 static void onError(jobject jMediaFileBuilder) {
     utils_call_instance_method_void(jMediaFileBuilder,
-                                    fields.MediaFileBuilder.onErrorID);
+                                    fields.MediaInfoBuilder.onErrorID);
 }
 
 static void onMediaFileFound(jobject jMediaFileBuilder, AVFormatContext *avFormatContext) {
@@ -186,7 +186,7 @@ static void onMediaFileFound(jobject jMediaFileBuilder, AVFormatContext *avForma
     jstring jFileFormatName = utils_get_env()->NewStringUTF(fileFormatName);
 
     utils_call_instance_method_void(jMediaFileBuilder,
-                                    fields.MediaFileBuilder.onMediaFileFoundID,
+                                    fields.MediaInfoBuilder.onMediaFileFoundID,
                                     jFileFormatName);
 }
 
@@ -208,7 +208,7 @@ static void onVideoStreamFound(jobject jMediaFileBuilder,
             guessedFrameRate.num / (double) guessedFrameRate.den;
 
     utils_call_instance_method_void(jMediaFileBuilder,
-                                    fields.MediaFileBuilder.onVideoStreamFoundID,
+                                    fields.MediaInfoBuilder.onVideoStreamFoundID,
                                     jBasicStreamInfo,
                                     parameters->bit_rate,
                                     resultFrameRate,
@@ -237,7 +237,7 @@ static void onAudioStreamFound(jobject jMediaFileBuilder,
     av_bprint_finalize(&printBuffer, nullptr);
 
     utils_call_instance_method_void(jMediaFileBuilder,
-                                    fields.MediaFileBuilder.onAudioStreamFoundID,
+                                    fields.MediaInfoBuilder.onAudioStreamFoundID,
                                     jBasicStreamInfo,
                                     parameters->bit_rate,
                                     jSampleFormat,
@@ -253,7 +253,7 @@ static void onSubtitleStreamFound(jobject jMediaFileBuilder,
     jobject jBasicStreamInfo = createBasicStreamInfo(jMediaFileBuilder, avFormatContext, index);
 
     utils_call_instance_method_void(jMediaFileBuilder,
-                                    fields.MediaFileBuilder.onSubtitleStreamFoundID,
+                                    fields.MediaInfoBuilder.onSubtitleStreamFoundID,
                                     jBasicStreamInfo);
 }
 

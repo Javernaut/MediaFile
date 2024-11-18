@@ -3,15 +3,15 @@ package io.github.javernaut.mediafile
 import io.github.javernaut.mediafile.model.AudioStream
 import io.github.javernaut.mediafile.model.BasicStreamInfo
 import io.github.javernaut.mediafile.model.Container
-import io.github.javernaut.mediafile.model.MetaData
+import io.github.javernaut.mediafile.model.MediaInfo
 import io.github.javernaut.mediafile.model.SubtitleStream
 import io.github.javernaut.mediafile.model.VideoStream
 
 /**
- * Class that aggregates the creation process of a [MetaData] object. Certain private methods are
+ * Class that aggregates the creation process of a [MediaInfo] object. Certain private methods are
  * called from the JNI layer.
  */
-internal class MediaFileBuilder {
+internal class MediaInfoBuilder {
 
     private var error = false
 
@@ -21,13 +21,13 @@ internal class MediaFileBuilder {
     private var subtitleStream = mutableListOf<SubtitleStream>()
 
     /**
-     * Combines all data read from FFmpeg into a [MetaData] object. If there was error during
+     * Combines all data read from FFmpeg into a [MediaInfo] object. If there was error during
      * metadata reading then null is returned.
      */
-    fun create(): MetaData? {
+    fun create(): MediaInfo? {
         if (error) return null
 
-        return MetaData(
+        return MediaInfo(
             container!!,
             videoStream,
             audioStreams,

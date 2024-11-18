@@ -18,7 +18,7 @@ Java_io_github_javernaut_mediafile_MediaFile_nativeClose(
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_io_github_javernaut_mediafile_MediaFile_nativeReadMetaData(
+Java_io_github_javernaut_mediafile_MediaFile_nativeReadMediaInfo(
         JNIEnv *env,
         jobject thiz,
         jlong contextHandle,
