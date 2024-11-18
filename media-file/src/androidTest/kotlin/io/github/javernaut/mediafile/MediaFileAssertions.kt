@@ -28,8 +28,8 @@ object MediaFileAssertions {
             assertThat(videoStream.basicInfo.language).isNull()
             assertThat(videoStream.basicInfo.disposition).isEqualTo(1) // Aka 'Default'
 
-            assertThat(videoStream.frameHeight).isEqualTo(2160)
-            assertThat(videoStream.frameWidth).isEqualTo(3840)
+            assertThat(videoStream.frameSize.height).isEqualTo(2160)
+            assertThat(videoStream.frameSize.width).isEqualTo(3840)
 
             // Audio stream
             assertThat(mediaInfo.audioStreams).isNotNull()

@@ -1,5 +1,6 @@
 package io.github.javernaut.mediafile
 
+import android.util.Size
 import io.github.javernaut.mediafile.model.AudioStream
 import io.github.javernaut.mediafile.model.BasicStreamInfo
 import io.github.javernaut.mediafile.model.Container
@@ -61,8 +62,7 @@ internal class MediaInfoBuilder {
                 basicStreamInfo,
                 bitRate,
                 frameRate,
-                frameWidth,
-                frameHeight
+                Size(frameWidth, frameHeight)
             )
         }
     }
