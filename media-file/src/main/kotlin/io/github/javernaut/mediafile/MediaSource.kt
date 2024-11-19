@@ -53,6 +53,8 @@ sealed class MediaSource {
      * On successful [MediaFile] creation, the ownership of the file descriptor is transferred to the [MediaFile]'s native implementation. In this case the file descriptor is released by the [MediaFile.close] method call.
      *
      * In case the [FileDescriptor] instance wasn't used or if no [MediaFile] instance was retrieved, the incoming [ParcelFileDescriptor] or [AssetFileDescriptor] should be released manually.
+     *
+     * Backed by FFmpeg's _fd_ protocol.
      */
     class FileDescriptor : MediaSource {
 
