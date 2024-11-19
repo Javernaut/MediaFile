@@ -41,7 +41,7 @@ jobs:
         run: ./gradlew :media-file:assembleRelease
 
       - name: Testing
-        run: ./gradlew :media-file:pixel2api34ReleaseAndroidTest
+        run: ./gradlew :media-file:pixel2api34ReleaseAndroidTest -Pandroid.testoptions.manageddevices.emulator.gpu=swiftshader_indirect
 
       - name: Publishing the library to Maven Central
         run: ./gradlew publishReleasePublicationToSonatypeRepository closeAndReleaseSonatypeStagingRepository --max-workers 1
