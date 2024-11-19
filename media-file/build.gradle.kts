@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.jetbrains.kotlin.android)
 
     `maven-publish`
     signing
@@ -8,7 +8,7 @@ plugins {
 
 android {
     namespace = "io.github.javernaut.mediafile"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 21
@@ -32,11 +32,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
     ndkVersion = "27.2.12479018"
     externalNativeBuild {

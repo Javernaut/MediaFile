@@ -19,5 +19,5 @@ androidx-test-ext-truth = { module = "androidx.test.ext:truth", version.ref = "a
 
 [plugins]
 android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 publishPlugin = { id = "io.github.gradle-nexus.publish-plugin", version.ref = "publishPlugin" }
