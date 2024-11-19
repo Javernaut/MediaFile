@@ -60,7 +60,7 @@ accessing:
 `MediaFile` and `FrameLoader` implement `AutoClosable`, so they can be used in try-with-resources (
 Java) or with use() function (Kotlin).
 
-Logs from FFmpeg can be redirected to LogCat, which is controled by
+Logs from FFmpeg can be redirected to LogCat, which is controlled by
 `MediaFileFactory#setMinLogLevel()` method.
 
 ## Download

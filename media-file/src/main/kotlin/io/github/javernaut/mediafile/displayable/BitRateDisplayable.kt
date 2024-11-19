@@ -6,6 +6,9 @@ import io.github.javernaut.mediafile.model.BitRate
 import java.text.DecimalFormat
 import kotlin.math.roundToInt
 
+/**
+ * Returns prettier representation of [BitRate] value, for example "21.8 Mbps". Available postfixes include: bps, kbps, Mbps and Gbps.
+ */
 fun BitRate.toDisplayable(resources: Resources): String? {
     return when {
         value <= 0 -> null

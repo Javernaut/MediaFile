@@ -8,7 +8,7 @@ import io.github.javernaut.mediafile.isValid
 
 
 /**
- * Class for loading N equidistant frames from a video file.
+ * Class for loading N equidistant frames from a video stream of a [MediaFile].
  * Subject to change in future releases.
  */
 class FrameLoader internal constructor(
@@ -17,11 +17,18 @@ class FrameLoader internal constructor(
 
     private var closed = false
 
+    /**
+     * Loads the next frame into [bitmap]. The management of Bitmap objects is up to the client.
+     * The metrics of the incoming [bitmap] are respected and the original frame will be scaled to fit the bitmap.
+     */
     @Synchronized
     fun loadNextFrameInto(bitmap: Bitmap): Boolean {
         return !closed && nativeLoadFrame(nativeHandle, bitmap)
     }
 
+    /**
+     * Closing the instance and disposing the internal resources.
+     */
     @Synchronized
     override fun close() {
         if (!closed) {
@@ -60,6 +67,9 @@ class FrameLoader internal constructor(
     }
 }
 
+/**
+ * Creates a [FrameLoader] instance for the [MediaFile], which will produce [totalFramesToRead] equidistant frames.
+ */
 fun MediaFile.getFrameLoader(totalFramesToRead: Int): FrameLoader? {
     return create(this, totalFramesToRead)
 }

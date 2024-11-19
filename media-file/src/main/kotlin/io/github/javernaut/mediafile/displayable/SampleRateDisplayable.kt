@@ -5,6 +5,9 @@ import io.github.javernaut.mediafile.R
 import io.github.javernaut.mediafile.model.SampleRate
 import java.text.DecimalFormat
 
+/**
+ * Returns prettier representation of [SampleRate] value, for example "48 kHz".
+ */
 fun SampleRate.toDisplayable(resources: Resources): String? {
     return if (value > 0) {
         val formattedSampleRate = DecimalFormat("0.#").format(value / 1000f)

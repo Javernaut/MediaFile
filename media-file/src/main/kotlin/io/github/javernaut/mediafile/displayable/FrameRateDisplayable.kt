@@ -7,6 +7,9 @@ import java.text.DecimalFormat
 import kotlin.math.abs
 import kotlin.math.max
 
+/**
+ * Returns prettier representation of [FrameRate] value, for example "25 fps" or "29.97 fps".
+ */
 fun FrameRate.toDisplayable(resources: Resources): String? {
     return if (value.equalsDelta(0.0)) {
         null

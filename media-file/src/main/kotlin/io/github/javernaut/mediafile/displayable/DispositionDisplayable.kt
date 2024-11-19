@@ -4,6 +4,9 @@ import android.content.res.Resources
 import io.github.javernaut.mediafile.R
 import io.github.javernaut.mediafile.model.BasicStreamInfo
 
+/**
+ * Returns a comma separated concatenation of each disposition bits meanings, for example "Default, Forced".
+ */
 fun BasicStreamInfo.getDisplayableDisposition(resources: Resources): String? {
     return if (disposition != 0) {
         DispositionFeature.entries.filter {
