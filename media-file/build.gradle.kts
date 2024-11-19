@@ -50,7 +50,7 @@ android {
                 create("pixel2api34") {
                     device = "Pixel 2"
                     apiLevel = 34
-                    systemImageSource = "aosp-atd"
+                    systemImageSource = "aosp"
                 }
             }
         }
