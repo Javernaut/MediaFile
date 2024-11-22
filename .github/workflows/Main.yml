@@ -34,7 +34,7 @@ jobs:
           ls /dev/kvm
 
       - name: Gradle Wrapper Validation
-        uses: gradle/wrapper-validation-action@v2
+        uses: gradle/wrapper-validation-action@v3
 
       - name: Overriding gradle.properties for CI
         run: mkdir -p ~/.gradle ; cp .github/ci-gradle.properties ~/.gradle/gradle.properties
