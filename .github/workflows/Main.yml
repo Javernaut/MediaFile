@@ -55,7 +55,7 @@ jobs:
           ./ffmpeg-android-maker/ffmpeg-android-maker.sh -dav1d
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
+        uses: gradle/actions/setup-gradle@v4
 
       - name: Building
         run: ./gradlew :media-file:assembleRelease
