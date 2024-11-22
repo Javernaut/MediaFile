@@ -1,4 +1,4 @@
-name: Publish to Maven Central
+name: Unified workflow
 on:
   # When a release is created via Github UI or
   release:
