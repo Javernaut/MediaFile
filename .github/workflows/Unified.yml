@@ -9,6 +9,14 @@ on:
   # a PR is opened to main branch
   pull_request:
     branches: [ main ]
+
+concurrency:
+  # 'release'      event has the tag as the ref:         refs/tags/v1.2.3
+  # 'push'         event has the branch name as the ref: refs/heads/main
+  # 'pull_request' event has the PR's unique ref:        refs/pull/5/merge
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -34,7 +42,7 @@ jobs:
           ls /dev/kvm
 
       - name: Gradle Wrapper Validation
-        uses: gradle/wrapper-validation-action@v2
+        uses: gradle/wrapper-validation-action@v3
 
       - name: Overriding gradle.properties for CI
         run: mkdir -p ~/.gradle ; cp .github/ci-gradle.properties ~/.gradle/gradle.properties
@@ -55,7 +63,7 @@ jobs:
           ./ffmpeg-android-maker/ffmpeg-android-maker.sh -dav1d
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
+        uses: gradle/actions/setup-gradle@v4
 
       - name: Building
         run: ./gradlew :media-file:assembleRelease
