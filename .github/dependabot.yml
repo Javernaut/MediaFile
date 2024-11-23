@@ -1,0 +1,16 @@
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "gradle"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      # Jetpack libraries are usually released on each second Wednesday 1-2 hours before 17:30 UTC
+      time: "17:30"
+    registries: "*"
+    labels:
+      - "dependencies"
+    open-pull-requests-limit: 10
