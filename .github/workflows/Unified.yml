@@ -69,7 +69,7 @@ jobs:
         run: ./gradlew :media-file:assembleRelease
 
       - name: Testing
-        run: ./gradlew :media-file:pixel2api35ReleaseAndroidTest -Pandroid.testoptions.manageddevices.emulator.gpu=swiftshader_indirect
+        run: ./gradlew :media-file:pixel2api35ReleaseAndroidTest -Pandroid.testoptions.manageddevices.emulator.gpu=swiftshader_indirect --info
 
       - name: Publishing the library to Maven Central
         # Only for 'When a release is created via Github UI'
