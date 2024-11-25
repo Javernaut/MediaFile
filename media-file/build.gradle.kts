@@ -8,7 +8,7 @@ plugins {
 
 android {
     namespace = "io.github.javernaut.mediafile"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 21
@@ -18,6 +18,13 @@ android {
 
         ndk {
             abiFilters += listOf("x86", "x86_64", "armeabi-v7a", "arm64-v8a")
+        }
+        externalNativeBuild {
+            cmake {
+                // NDK r27-specific solution for compatibility with 16 kb page
+                // Once migrated to NDK r28, this flag will not be needed
+                arguments += listOf("-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON")
+            }
         }
     }
 
