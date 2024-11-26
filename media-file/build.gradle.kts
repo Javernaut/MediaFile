@@ -59,6 +59,13 @@ android {
                     apiLevel = 34
                     systemImageSource = "aosp"
                 }
+                // TODO Use this device on CI once the issue is resolved: https://issuetracker.google.com/issues/377321470
+                // For now, local testing is enough to confirm 16 kb pages are implemented properly
+                create("pixel2api35") {
+                    device = "Pixel 2"
+                    apiLevel = 35
+                    systemImageSource = "google_apis_ps16k"
+                }
             }
         }
     }
