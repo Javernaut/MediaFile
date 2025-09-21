@@ -45,7 +45,7 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_17.toString()
     }
-    ndkVersion = "27.2.12479018"
+    ndkVersion = "28.2.13676358"
     externalNativeBuild {
         cmake {
             path = file("src/main/cpp/CMakeLists.txt")
