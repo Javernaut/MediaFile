@@ -1,6 +1,6 @@
 [versions]
 androidGradlePlugin = "8.13.0"
-publishPlugin = "2.0.0"
+publishPlugin = "0.34.0"
 
 kotlin = "2.2.20"
 
@@ -20,4 +20,4 @@ androidx-test-ext-truth = { module = "androidx.test.ext:truth", version.ref = "a
 [plugins]
 android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-publishPlugin = { id = "io.github.gradle-nexus.publish-plugin", version.ref = "publishPlugin" }
+publishPlugin = { id = "com.vanniktech.maven.publish", version.ref = "publishPlugin" }
