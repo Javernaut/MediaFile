@@ -86,10 +86,13 @@ dependencies {
 
 mavenPublishing {
     val artifactId = "mediafile"
+    val version = project.providers.gradleProperty("mediafile.version").get()
+    val versionSuffix = project.providers.gradleProperty("mediafile.versionSuffix").orNull?.let { "-$it" }.orEmpty()
+
     coordinates(
         "io.github.javernaut",
         artifactId,
-        "2.0.1" + rootProject.ext["versionSuffix"]
+        version + versionSuffix
     )
 
     pom {
@@ -99,7 +102,7 @@ mavenPublishing {
         licenses {
             license {
                 name.set("MIT License")
-                url.set("http://www.opensource.org/licenses/mit-license.php")
+                url.set("https://opensource.org/license/mit")
             }
         }
         developers {

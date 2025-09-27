@@ -74,11 +74,9 @@ jobs:
       - name: Publishing the library to Maven Central
         # Only for 'When a release is created via Github UI'
         if: github.event_name == 'release'
-        run: ./gradlew publishReleasePublicationToSonatypeRepository closeAndReleaseSonatypeStagingRepository --max-workers 1
+        run: ./gradlew publishToMavenCentral
 
       - name: Publishing the library to Maven Central (SNAPSHOT)
         # Only for 'a push to main branch is done'
         if: github.event_name == 'push'
-        run: ./gradlew publishReleasePublicationToSonatypeRepository --max-workers 1
-        env:
-          VERSION_SUFFIX: -SNAPSHOT
+        run: ./gradlew publishToMavenCentral -Pmediafile.versionSuffix=SNAPSHOT
