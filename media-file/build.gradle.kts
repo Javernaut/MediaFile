@@ -1,9 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
-
-    `maven-publish`
-    signing
+    alias(libs.plugins.publishPlugin)
 }
 
 android {
@@ -86,61 +84,38 @@ dependencies {
     androidTestImplementation(libs.androidx.test.ext.truth)
 }
 
-// TODO Extract this part to a separate place
-android {
-    publishing {
-        singleVariant("release") {
-            withSourcesJar()
-            withJavadocJar()
-        }
-    }
-}
+mavenPublishing {
+    val artifactId = "mediafile"
+    val version = project.providers.gradleProperty("mediafile.version").get()
+    val versionSuffix = project.providers.gradleProperty("mediafile.versionSuffix").orNull?.let { "-$it" }.orEmpty()
 
-private val publishArtifactId = "mediafile"
-
-publishing {
-    publications {
-        create<MavenPublication>("release") {
-            groupId = rootProject.group as String
-            artifactId = publishArtifactId
-            version = rootProject.version as String
-
-            pom {
-                name = publishArtifactId
-                description =
-                    "A library for reading the basic media information about video and audio files"
-                url = "https://github.com/Javernaut/MediaFile"
-                licenses {
-                    license {
-                        name = "MIT License"
-                        url = "http://www.opensource.org/licenses/mit-license.php"
-                    }
-                }
-                developers {
-                    developer {
-                        id = "javernaut"
-                        name = "Oleksandr Berezhnyi"
-                    }
-                }
-                scm {
-                    connection = "scm:git:git://github.com/Javernaut/MediaFile.git"
-                    developerConnection = "scm:git:ssh://github.com:Javernaut/MediaFile.git"
-                    url = "https://github.com/Javernaut/MediaFile"
-                }
-            }
-
-            afterEvaluate {
-                from(components["release"])
-            }
-        }
-    }
-}
-
-signing {
-    useInMemoryPgpKeys(
-        rootProject.ext["signing.keyId"] as String,
-        rootProject.ext["signing.key"] as String,
-        rootProject.ext["signing.password"] as String,
+    coordinates(
+        "io.github.javernaut",
+        artifactId,
+        version + versionSuffix
     )
-    sign(publishing.publications)
+
+    pom {
+        name.set(artifactId)
+        description.set("A library for reading the basic media information about video and audio files")
+        url.set("https://github.com/Javernaut/MediaFile")
+        licenses {
+            license {
+                name.set("MIT License")
+                url.set("https://opensource.org/license/mit")
+            }
+        }
+        developers {
+            developer {
+                id.set("javernaut")
+                name.set("Oleksandr Berezhnyi")
+                url.set("https://github.com/Javernaut")
+            }
+        }
+        scm {
+            url.set("https://github.com/Javernaut/MediaFile")
+            connection.set("scm:git:git://github.com/Javernaut/MediaFile.git")
+            developerConnection.set("scm:git:ssh://github.com:Javernaut/MediaFile.git")
+        }
+    }
 }
