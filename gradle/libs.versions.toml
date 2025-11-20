@@ -1,6 +1,6 @@
 [versions]
 androidGradlePlugin = "8.13.1"
-publishPlugin = "0.34.0"
+publishPlugin = "0.35.0"
 
 kotlin = "2.2.21"
 
