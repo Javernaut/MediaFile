@@ -2,7 +2,7 @@
 androidGradlePlugin = "8.13.1"
 publishPlugin = "0.35.0"
 
-kotlin = "2.2.21"
+kotlin = "2.3.0"
 
 androidx-test-core = "1.7.0"
 androidx-test-rules = "1.7.0"
