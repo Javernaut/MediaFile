@@ -2,6 +2,8 @@
 androidGradlePlugin = "9.1.0"
 publishPlugin = "0.36.0"
 
+kotlin = "2.3.10"
+
 androidx-test-core = "1.7.0"
 androidx-test-rules = "1.7.0"
 androidx-test-runner = "1.7.0"
