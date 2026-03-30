@@ -41,7 +41,7 @@ jobs:
           ls /dev/kvm
 
       - name: Gradle Wrapper Validation
-        uses: gradle/actions/wrapper-validation@v5
+        uses: gradle/actions/wrapper-validation@v6
 
       - name: Overriding gradle.properties for CI
         run: mkdir -p ~/.gradle ; cp .github/ci-gradle.properties ~/.gradle/gradle.properties
@@ -62,7 +62,7 @@ jobs:
           ./ffmpeg-android-maker/ffmpeg-android-maker.sh -dav1d
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v5
+        uses: gradle/actions/setup-gradle@v6
 
       - name: Building
         run: ./gradlew :media-file:assembleRelease
