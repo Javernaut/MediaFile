@@ -1,5 +1,5 @@
 [versions]
-androidGradlePlugin = "9.5.1"
+androidGradlePlugin = "9.5.3"
 publishPlugin = "0.37.0"
 
 kotlin = "2.3.10"
